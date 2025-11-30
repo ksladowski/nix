@@ -3,9 +3,7 @@
 {
   imports =
     [ 
-      ./hardware-configuration.nix
-      ./disk-config.nix
-      #../../modules/zsh.nix
+#      ../../modules/zsh.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -13,7 +11,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos-vm";
+#  networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Chicago";
@@ -67,6 +65,5 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.05";
-
 }
 

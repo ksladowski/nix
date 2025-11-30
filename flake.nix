@@ -45,8 +45,9 @@
             #  (inputs.secrets.hostSecrets.${host})
 
             # my modules
-            ./modules
+#            ./modules
 
+            inputs.disko.nixosModules.disko
             # home manager
             inputs.home-manager.nixosModules.home-manager
             {
