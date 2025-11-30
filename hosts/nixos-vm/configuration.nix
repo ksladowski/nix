@@ -2,16 +2,15 @@
 
 {
   imports =
-    [ 
-#      ../../modules/zsh.nix
+    [
+     ../../modules/system/bootloader.nix
+     ../../modules/system/greetd.nix
+     ../../modules/system/zsh.nix
+     ../../modules/system/stylix.nix
     ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-#  networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Chicago";
@@ -30,7 +29,7 @@
   services.hypridle.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     wget
     git
     kitty
@@ -40,30 +39,9 @@
     hypridle
     hyprlock
     hyprpolkitagent
-    tuigreet
   ];
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet \
-         --time --time-format '%I:%M %p | %a - %h | %F' \
-          --cmd 'uwsm start hyprland'";
-        user = "greeter";
-      };
-    };
-  };
-
-  users.users.greeter = {
-    isNormalUser = false;
-    description = "greetd greeter user";
-    extraGroups = [ "video" "audio" ];
-    linger = true;
-  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.05";
 }
-

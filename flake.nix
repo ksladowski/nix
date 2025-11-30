@@ -1,6 +1,26 @@
 {
   description = "NixOS Config";
 
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   outputs = inputs@{ self, ... }:
     let
       system = "x86_64-linux";
@@ -37,50 +57,25 @@
         (map (host: {
           name = host;
           value = lib.nixosSystem {
-	    inherit system;
+            inherit system;
             modules = [
-            # host specific config
+              # host specific config
               { config.networking.hostName = host; }
               (./hosts + "/${host}")
-            #  (inputs.secrets.hostSecrets.${host})
+              #  (inputs.secrets.hostSecrets.${host})
+              inputs.disko.nixosModules.disko
+              inputs.home-manager.nixosModules.home-manager
+              inputs.stylix.nixosModules.stylix
 
-            # my modules
-#            ./modules
-
-            inputs.disko.nixosModules.disko
-            # home manager
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = {
-                inherit pkgs;
-	        inherit pkgs-stable;
-                inherit inputs;
-              };
-            }
-          ];
-          specialArgs = {
-	    inherit pkgs-stable;
-            inherit inputs;
+              # ./modules/system
+            ];
           };
+        }) hosts);
+      homeConfigurations = {
+        kevin = inputs.home-manager.lib.homeManagerConfiguration{
+          inherit pkgs;
+          modules = [./home.nix];
         };
-      }) hosts);
+      };
     };
-
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
-
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix.url = "github:nix-community/stylix";
-  };
-
 }
