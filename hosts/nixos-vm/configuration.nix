@@ -26,7 +26,6 @@
     enable = true;
     withUWSM = true;
   };
-  services.hypridle.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -36,9 +35,6 @@
     wofi
     waybar
     emacs
-    hypridle
-    hyprlock
-    hyprpolkitagent
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

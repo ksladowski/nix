@@ -16,7 +16,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "github:nix-community/stylix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -72,7 +72,7 @@
           };
         }) hosts);
       homeConfigurations = {
-        kevin = inputs.home-manager.lib.homeManagerConfiguration{
+        "kevin" = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [./home.nix];
         };
