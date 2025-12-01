@@ -1,16 +1,18 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports =
-    [
+  imports = [
+    ./hardware-configuration.nix
+    ./disk-config.nix
+
      ../../modules/system/bootloader.nix
+     ../../modules/system/bluetooth.nix
      ../../modules/system/greetd.nix
      ../../modules/system/zsh.nix
-     ../../modules/system/stylix.nix
-    ];
-
+  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Chicago";
