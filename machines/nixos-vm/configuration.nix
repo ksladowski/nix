@@ -8,10 +8,16 @@
     ../../modules/system/bootloader.nix
     ../../modules/system/greetd.nix
     ../../modules/system/zsh.nix
-    ../../modules/system/impermanence.nix
+    ../../modules/system/zswap.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "zswap.enabled=1"
+    "zswap.compressor=lz4"
+    "zswap.max_pool_percent=20"
+    "zswap.shrinker_enabled=1"
+  ];
 
   networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
