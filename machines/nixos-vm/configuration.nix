@@ -3,13 +3,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./disk-config.nix
+    ./disko-config.nix
 
-     ../../modules/system/bootloader.nix
-     ../../modules/system/bluetooth.nix
-     ../../modules/system/greetd.nix
-     ../../modules/system/zsh.nix
+    ../../modules/system/bootloader.nix
+    ../../modules/system/greetd.nix
+    ../../modules/system/zsh.nix
+    ../../modules/system/impermanence.nix
   ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos-vm";
@@ -22,20 +23,10 @@
     extraGroups = [ "wheel" ];
   };
 
-  programs.firefox.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
   environment.systemPackages = with pkgs; [
-    vim
     wget
     git
-    kitty
-    wofi
-    waybar
+    vim
     emacs
   ];
 

@@ -8,14 +8,9 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs @ { self, ... }:
+  outputs = inputs @ { self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
 
@@ -37,11 +32,6 @@
             ./machines/nixos-vm/configuration.nix
             #  (inputs.secrets.hostSecrets.${host})
             inputs.disko.nixosModules.disko
-            inputs.home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.kevin = ./home.nix;
-            }
           ];
         };
       };
