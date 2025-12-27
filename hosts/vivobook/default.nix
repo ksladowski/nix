@@ -10,6 +10,8 @@
     ../../system/zsh.nix
     ../../system/zswap.nix
 
+    ../../system/optional/keyd
+
   ];
 
   networking = {
