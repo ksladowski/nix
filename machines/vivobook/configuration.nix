@@ -12,14 +12,8 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-    "zswap.enabled=1"
-    "zswap.compressor=lz4"
-    "zswap.max_pool_percent=20"
-    "zswap.shrinker_enabled=1"
-  ];
 
-  networking.hostName = "nixos-vm";
+  networking.hostName = "vivobook";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Chicago";
