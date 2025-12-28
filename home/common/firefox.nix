@@ -3,12 +3,60 @@
 
   programs.firefox = {
     enable = true;
+    policies = {
+      DisableFirefoxAccounts = true;
+      DisableFirefoxStudies = true;
+      DisableFormHistory = true;
+      DisableMasterPasswordCreation = true;
+      DisableSetDesktopBackground = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DisplayBookmarksToolbar = "never";
+      DontCheckDefaultBrowser = true;
+      FirefoxHome = {
+        Search = true;
+        TopSites = false;
+        SponsoredTopSites = false;
+        Highlights = false;
+        Pocket = false;
+        Stories = false;
+        SponsoredPocket = false;
+        SponsoredStories = false;
+        Snippets = false;
+        Weather = false;
+        SupportFirefox = false;
+        Locked = true;
+      };
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
+      };
+
+      UserMessaging = {
+        WhatsNew = false;
+        ExtensionRecommendations = false;
+        FeatureRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = true;
+        MoreFromMozilla = false;
+      };
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      SearchSuggestEnabled = false;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      NetworkPrediction = false; #Disable DNS prefetching
+        PasswordManagerEnabled = false;
+    };
     profiles.default = {
       isDefault = true;
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
-        bitwarden
-        consent-o-matic
+          bitwarden
+          consent-o-matic
+          vimium-c
       ];
       search = {
         force = true;
@@ -20,38 +68,13 @@
             urls = [{ template = "https://searx.sladnet.xyz/?q={searchTerms}"; }];
             icon = "https://searx.sladnet.xyz/favicon.ico";
           };
-          bing.metadata.hidden = true;
         };
       };
       settings = {
-        "browser.startup.homepage" = "about:home";
-
-        "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
-
-        # Disable irritating first-run stuff
-        "browser.disableResetPrompt" = true;
-        "browser.download.panel.shown" = true;
-        "browser.feeds.showFirstRunUI" = false;
-        "browser.messaging-system.whatsNewPanel.enabled" = false;
-        "browser.rights.3.shown" = true;
-        "browser.shell.checkDefaultBrowser" = false;
-        "browser.shell.defaultBrowserCheckCount" = 1;
-        "browser.startup.homepage_override.mstone" = "ignore";
-        "browser.uitour.enabled" = false;
-        "startup.homepage_override_url" = "";
-        "trailhead.firstrun.didSeeAboutWelcome" = true;
-        "browser.bookmarks.restore_default_bookmarks" = false;
-        "browser.bookmarks.addedImportButton" = true;
-
-	# Disable some telemetry
-        "app.shield.optoutstudies.enabled" = false;
-        "browser.discovery.enabled" = false;
-        "extensions.getAddons.showRecommendations" = false;
-        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-        "browser.newtabpage.activity-stream.telemetry" = false;
-        };
-        };
-        };
-        }
+        "browser.tabs.groups.smart.enabled" = false; 
+        "browser.ml.linkPreview.enabled" = false; 
+        "browser.newtabpage.activity-stream.system.showWeather" = false;
+      };
+    };
+  };
+}
