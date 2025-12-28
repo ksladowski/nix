@@ -4,7 +4,7 @@
     ./alacritty.nix
       ./firefox.nix
       ./niri.nix
-      ./vesktop.nix
+      ./discord.nix
       ./git.nix
       ./shell.nix
   ];
