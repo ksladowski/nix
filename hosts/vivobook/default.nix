@@ -1,10 +1,13 @@
+{ inputs, outputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
 
     ../../users/kevin
+
     ../../system/common
+
     ../../system/bootloader.nix
     ../../system/greetd.nix
     ../../system/zsh.nix

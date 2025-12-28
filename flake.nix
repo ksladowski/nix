@@ -41,11 +41,7 @@
 
       nixosConfigurations = {
         vivobook = lib.nixosSystem {
-          inherit pkgs system;
-          modules = [
-            ./hosts/vivobook
-            inputs.disko.nixosModules.disko
-          ];
+          modules = [ ./hosts/vivobook ];
           specialArgs = { inherit inputs outputs; };
         };
       };

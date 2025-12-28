@@ -9,5 +9,5 @@
   };
 # TODO add hashed password and set users immutable
 
-  home-manager.users.kevin = ../../home.nix;
+  home-manager.users.kevin = ../../home/common;
 }
