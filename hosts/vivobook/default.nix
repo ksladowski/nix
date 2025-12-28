@@ -15,6 +15,8 @@
 
     ../../system/optional/keyd
 
+    ../../theming/stylix.nix
+
   ];
 
   networking = {

@@ -1,32 +1,27 @@
-{ inputs, outputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./alacritty.nix
-    ./firefox.nix
-    ./niri.nix
+      ./firefox.nix
+      ./niri.nix
+      ./vesktop.nix
+      ./git.nix
+      ./shell.nix
   ];
 
-   programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
-   programs.git = {
-     enable = true;
-     settings.user = {
-       name = "Kevin Sladowski";
-       email = "ksladowski@mailbox.org";
-     };
-   };
+  home = {
+    packages = with pkgs; [
+      emacs
+      bitwarden-desktop
+      bitwarden-cli
+    ];
 
-   home = {
-     packages = with pkgs; [
-       emacs
-         bitwarden-desktop
-         bitwarden-cli
-     ];
+    username = "kevin";
+    homeDirectory = "/home/kevin";
+    stateVersion = "23.11";
 
-     username = "kevin";
-     homeDirectory = "/home/kevin";
-     stateVersion = "23.11";
-
-   };
+  };
 
 }

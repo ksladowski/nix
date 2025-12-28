@@ -6,6 +6,8 @@
     ./vim.nix
   ];
 
+  time.timeZone = "America/Chicago";
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
