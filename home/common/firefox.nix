@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, pkgs, ... }:
+{ inputs, outputs, config, pkgs, ... }:
 {
 
   programs.firefox = {
@@ -77,4 +77,5 @@
       };
     };
   };
+    stylix.targets.firefox.profileNames = [ "default" ];
 }

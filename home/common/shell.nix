@@ -7,6 +7,9 @@
     git = true;
   };
 
+  programs.fzf.enable = true;
+  programs.ripgrep.enable = true;
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;

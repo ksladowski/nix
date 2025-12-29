@@ -2,15 +2,15 @@
 {
 
 ## TODO migrate to niri flake for faster updates - need cachix first
-  programs.niri.enable = true;
+#  programs.niri.enable = true;
 
 ## TODO eventually plan to migrate all of these to HM config, just trying to get an environment set up right now
-  security.polkit.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.swaylock = {};
-  programs.waybar.enable = true;
-  environment.systemPackages = with pkgs; [ alacritty fuzzel swaylock mako swayidle xwayland-satellite tuigreet ];
-  environment.sessionVariables.NIXOS_OZONE_WL = 1;
+#  security.polkit.enable = true;
+#  services.gnome.gnome-keyring.enable = true;
+#  security.pam.services.swaylock = {};
+#  programs.waybar.enable = true;
+#  environment.systemPackages = with pkgs; [ alacritty fuzzel swaylock mako swayidle xwayland-satellite tuigreet ];
+#  environment.sessionVariables.NIXOS_OZONE_WL = 1;
 
   # Greeter
 
@@ -34,5 +34,5 @@
   };
 
 ## TODO uncomment this once the other packages block is cleaned up
-#  environment.systemPackages = with pkgs; [ tuigreet ];
+  environment.systemPackages = with pkgs; [ tuigreet ];
 }
