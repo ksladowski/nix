@@ -55,8 +55,8 @@
     inherit lib;
 
     nixosConfigurations = {
-      vivobook = lib.nixosSystem {
-        modules = [ ./hosts/vivobook ];
+      ray = lib.nixosSystem {
+        modules = [ ./hosts/ray ];
         specialArgs = { inherit inputs outputs; };
       };
     };

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, osConfig, ... }:
 {
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
@@ -11,6 +11,12 @@
     package = pkgs.niri;
     settings = {
       environment."NIXOS_OZONE_WL" = "1";
+
+      spawn-at-startup = [
+      { argv = ["waybar"]; }
+      { argv = ["swayidle"]; }
+  #    { argv = ["swaybg" "--image" "/path/to/wallpaper.jpg"]; }
+      ];
 
       input = {
         keyboard.numlock = true;
@@ -34,6 +40,7 @@
         border.enable = false;
         focus-ring.enable = true;
         shadow.enable = true;
+        default-column-width.proportion = 0.5;
       };
 
       hotkey-overlay.skip-at-startup = true;
@@ -179,35 +186,31 @@
           allow-when-locked = true;
           action.spawn = [ "brightnessctl" "--class=backlight" "set" "-10%" ];
         };
-
       };
+      outputs = lib.mkMerge [
+        (lib.mkIf (osConfig.networking.hostName == "ray")
+        {
+          "eDP-1" = {
+            enable = true;
+            scale = 1.0;
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
+        })
+        (lib.mkIf (osConfig.networking.hostName == "rex")
+        {
+          "eDP-1" = {
+            enable = true;
+            scale = 1.5;
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
+        })
+      ];
     };
   };
-
-  (if (osConfig.networking.hostname == "vivobook")
-   then
-   programs.niri.settings.outputs = {
-    "eDP-1" = {
-      enable = true;
-      scale = 1.0;
-      position = {
-        x = 0;
-        y = 0;
-      };
-    };
-   };
-   else
-   (if (osConfig.networking.hostname == "nix")
-    then
-    programs.niri.settings.outputs = {
-    "eDP-1" = {
-      enable = true;
-      scale = 1.5;
-      position = {
-        x = 0;
-        y = 0;
-      };
-    };
-    };
-    else {}));
 }

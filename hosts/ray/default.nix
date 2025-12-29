@@ -20,7 +20,7 @@
   ];
 
   networking = {
-    hostName = "vivobook";
+    hostName = "ray";
     networkmanager.enable = true;
   };
 
