@@ -16,6 +16,7 @@
     ../../system/optional/keyd
     ../../system/optional/tlp
     ../../system/optional/upower
+    ../../system/optional/brightnessctl
 
     ../../theming/stylix.nix
 

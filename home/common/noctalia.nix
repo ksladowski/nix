@@ -40,6 +40,7 @@
           }
           {
             id = "Tray";
+            enableDrawer = false;
           }
           {
             id = "WiFi";

@@ -52,13 +52,19 @@
     };
     profiles.default = {
       isDefault = true;
-      extensions.force = true;
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin
-          bitwarden
-          consent-o-matic
-          vimium-c
-      ];
+      bookmarks = {
+        force = true;
+        settings = [];
+      };
+      extensions = {
+        force = true;
+        packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+          ublock-origin
+            bitwarden
+            consent-o-matic
+            vimium-c
+        ];
+      };
       search = {
         force = true;
         default = "searx";

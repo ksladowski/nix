@@ -178,32 +178,50 @@
         };
         "XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn = [ "brightnessctl" "--class=backlight" "set" "-10%" ];
+          action.spawn = [ "brightnessctl" "--class=backlight" "set" "10%-" ];
         };
       };
       outputs = lib.mkMerge [
         (lib.mkIf (osConfig.networking.hostName == "ray")
-        {
-          "eDP-1" = {
-            enable = true;
-            scale = 1.0;
-            position = {
-              x = 0;
-              y = 0;
-            };
-          };
-        })
-        (lib.mkIf (osConfig.networking.hostName == "rex")
-        {
-          "eDP-1" = {
-            enable = true;
-            scale = 1.5;
-            position = {
-              x = 0;
-              y = 0;
-            };
-          };
-        })
+         {
+         "eDP-1" = {
+         enable = true;
+         scale = 1.0;
+         position = {
+         x = 0;
+         y = 0;
+         };
+         };
+         })
+         ## TODO call these out by name not port
+      (lib.mkIf (osConfig.networking.hostName == "rex")
+       {
+       "DP-4" = {
+       enable = true;
+       mode = "2560x1440@144.006";
+       position  = {
+       x = 1920;
+       y = 0;
+       };
+       };
+       "DP-2" = {
+       enable = true;
+       mode = "1920x1080@144.001";
+       position = {
+       x = 0;
+       y = 380;
+       };
+       };
+       "HDMI-A-3" = {
+       enable = false;
+       mode = "1920x1080@60";
+       scale = 1.0;
+       position = {
+         x = 0;
+         y = 0;
+       };
+       };
+       })
       ];
     };
   };

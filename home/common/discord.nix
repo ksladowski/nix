@@ -6,7 +6,7 @@
 
   programs.nixcord = {
     enable = true;
-    discord.enable = false;
+    discord.enable = false; # don't want normal discord client
     vesktop.enable = true;
   };
 }
