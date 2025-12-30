@@ -48,10 +48,11 @@
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       NetworkPrediction = false; #Disable DNS prefetching
-        PasswordManagerEnabled = false;
+      PasswordManagerEnabled = false;
     };
     profiles.default = {
       isDefault = true;
+      extensions.force = true;
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
           bitwarden
@@ -74,8 +75,16 @@
         "browser.tabs.groups.smart.enabled" = false; 
         "browser.ml.linkPreview.enabled" = false; 
         "browser.newtabpage.activity-stream.system.showWeather" = false;
+        "browser.aboutConfig.showWarning" = false;
+        "browser.tabs.loadInBackground" = true;
+        "browser.in-content.dark-mode" = true; # Use dark mode
+        "ui.systemUsesDarkTheme" = true;
+        "extensions.autoDisableScopes" = 0; # Auto enable installed extensions
+        "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one
       };
     };
   };
-    stylix.targets.firefox.profileNames = [ "default" ];
+  stylix.targets.firefox.profileNames = [ "default" ];
+  stylix.targets.firefox.colorTheme.enable = true;
+
 }

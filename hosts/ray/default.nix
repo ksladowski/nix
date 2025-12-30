@@ -14,6 +14,8 @@
     ../../system/zswap.nix
 
     ../../system/optional/keyd
+    ../../system/optional/tlp
+    ../../system/optional/upower
 
     ../../theming/stylix.nix
 

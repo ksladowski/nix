@@ -8,9 +8,8 @@
     ./git.nix
     ./shell.nix
     ./fuzzel.nix
-    ./waybar.nix
-    ./swaylock.nix
     ./swayidle.nix
+    ./noctalia.nix
   ];
 
   programs.home-manager.enable = true;

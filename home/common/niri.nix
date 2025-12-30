@@ -12,12 +12,6 @@
     settings = {
       environment."NIXOS_OZONE_WL" = "1";
 
-      spawn-at-startup = [
-      { argv = ["waybar"]; }
-      { argv = ["swayidle"]; }
-  #    { argv = ["swaybg" "--image" "/path/to/wallpaper.jpg"]; }
-      ];
-
       input = {
         keyboard.numlock = true;
         touchpad = {
