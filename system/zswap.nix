@@ -4,6 +4,8 @@
   # Required for zswap lz4 compression
   boot.initrd.systemd.enable = true;
 
+  boot.initrd.kernelModules = [ "lz4" ];
+
   boot.kernelParams = [
     "zswap.enabled=1"
     "zswap.compressor=lz4"

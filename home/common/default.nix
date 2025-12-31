@@ -10,6 +10,7 @@
     ./fuzzel.nix
     ./swayidle.nix
     ./noctalia.nix
+    ./neovim.nix
   ];
 
   programs.home-manager.enable = true;

@@ -5,6 +5,8 @@
     extraGroups = [ 
 	    "network"
 	    "wheel" 
+      "input"
+      "bluetooth"
     ];
   };
 # TODO add hashed password and set users immutable

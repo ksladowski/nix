@@ -40,7 +40,7 @@
           }
           {
             id = "Tray";
-            enableDrawer = false;
+            drawerEnabled = false;
           }
           {
             id = "WiFi";
@@ -50,7 +50,7 @@
           }
           (lib.mkIf (osConfig.networking.hostName == "ray")
            {
-             id = "Brightness";
+           id = "Brightness";
            }
           )
           {
@@ -70,6 +70,63 @@
           ];
         };
       };
+      controlCenter = {
+        cards = [
+          {
+            enabled = true;
+            id = "profile-card";
+          }
+          {
+            enabled = true;
+            id = "shortcuts-card";
+          }
+          {
+            enabled = true;
+            id = "audio-card";
+          }
+          (lib.mkIf (osConfig.networking.hostName == "ray")
+            {
+              enabled = true;
+              id = "brightness-card";
+            }
+          )
+          (lib.mkIf (osConfig.networking.hostName == "rex")
+            {
+              enabled = false;
+              id = "brightness-card";
+            }
+          )
+          {
+            enabled = false;
+            id = "weather-card";
+          }
+          {
+            enabled = false;
+            id = "media-sysmon-card";
+          }
+        ];
+        shortcuts = {
+          left = [
+          {
+            id = "WiFi";
+          }
+          {
+            id = "Bluetooth";
+          }
+          {
+            id = "ScreenRecorder";
+          }
+          {
+            id = "KeepAwake";
+          }
+          {
+            id = "NightLight";
+          }
+          ];
+          right = [];
+        };
+      };
+      dock.enabled = false;
     };
     systemd.enable = true;
   };
