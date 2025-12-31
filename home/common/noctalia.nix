@@ -105,6 +105,10 @@
             id = "media-sysmon-card";
           }
         ];
+        wallpaper = {
+          enabled = true;
+          directory = "~/Pictures/Wallpapers";
+        };
         shortcuts = {
           left = [
           {

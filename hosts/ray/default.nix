@@ -18,6 +18,7 @@
     ../../system/optional/tlp
     ../../system/optional/upower
     ../../system/optional/brightnessctl
+    ../../system/optional/steam
 
     ../../theming/stylix.nix
 

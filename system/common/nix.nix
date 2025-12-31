@@ -1,5 +1,7 @@
 { inputs, lib, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
+
   nix = {
     settings = {
       auto-optimise-store = lib.mkDefault true;

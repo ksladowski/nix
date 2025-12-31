@@ -45,22 +45,9 @@
     inherit (self) outputs;
   system = "x86_64-linux";
 
-  lib = nixpkgs.lib // home-manager.lib; # this appends the contents, preferring the contents of HM if there's a conflict
-
-    pkgs = import inputs.nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = (_: true);
-      };
-    };
-
   in {
-
-    inherit lib;
-
     nixosConfigurations = {
-      ray = lib.nixosSystem {
+      ray = nixpkgs.lib.nixosSystem {
         modules = [ ./hosts/ray ];
         specialArgs = { inherit inputs outputs; };
       };
