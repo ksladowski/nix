@@ -44,6 +44,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence.url = "github:nix-community/impermanence";
+
   };
 
   outputs = { ... } @ inputs:
@@ -51,6 +53,10 @@
     nixosConfigurations = {
       ray = inputs.nixpkgs.lib.nixosSystem {
         modules = [ ./hosts/ray ];
+        specialArgs = { inherit inputs; };
+      };
+      testvm = inputs.nixpkgs.lib.nixosSystem {
+        modules = [ ./hosts/testvm ];
         specialArgs = { inherit inputs; };
       };
     };

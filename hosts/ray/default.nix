@@ -19,6 +19,7 @@
     ../../system/optional/upower
     ../../system/optional/brightnessctl
     ../../system/optional/steam
+    ../../system/optional/virtualization
 
     ../../theming/stylix.nix
 
