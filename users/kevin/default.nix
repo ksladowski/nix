@@ -1,5 +1,10 @@
 { pkgs, config, lib, ... }:
 {
+  sops.secrets.hashedPassword.neededForUsers = true;
+ 
+  ## TODO move this
+  users.mutableUsers = false;
+
   users.users.kevin = {
     isNormalUser = true;
     extraGroups = [ 
@@ -8,8 +13,8 @@
       "input"
       "bluetooth"
     ];
+    hashedPasswordFile = config.sops.secrets.hashedPassword.path;
   };
-# TODO add hashed password and set users immutable
 
   home-manager.users.kevin = ../../home/common;
 }
