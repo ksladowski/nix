@@ -5,12 +5,9 @@
       description = "Rollback BTRFS root subvolume to a pristine state";
       wantedBy = ["initrd.target"];
 
-      # LUKS/TPM process. If you have named your device mapper something other
-      # than 'enc', then @enc will have a different name. Adjust accordingly.
-      after = ["systemd-cryptsetup@enc.service"];
+      after = ["systemd-cryptsetup@crypted.service"];
 
-      # Before mounting the system root (/sysroot) during the early boot process
-      before = ["sysroot.mount"];
+      before = ["root.mount"];
 
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
@@ -19,7 +16,7 @@
 
         # We first mount the BTRFS root to /mnt
         # so we can manipulate btrfs subvolumes.
-        mount -o subvol=/ /dev/mapper/enc /mnt
+        mount -o subvol=/ /dev/mapper/crypted /mnt
 
         # While we're tempted to just delete /root and create
         # a new snapshot from /root-blank, /root is already

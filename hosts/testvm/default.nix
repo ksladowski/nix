@@ -13,6 +13,8 @@
     ../../system/zsh.nix
     ../../system/zswap.nix
 
+    ../../system/optional/impermanence
+
     ../../theming/stylix.nix
 
   ];
@@ -23,7 +25,7 @@
   sops.secrets."wifi/home-5g/psk" = {};
 
   networking = {
-    hostName = "ray";
+    hostName = "testvm";
     networkmanager = {
       enable = true;
     };
