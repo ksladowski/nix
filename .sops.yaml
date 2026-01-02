@@ -1,7 +1,7 @@
 keys:
   - &admin_kevin age1mxryupgwdk3rd8vx6l0gkgsccdnlnfpagd4w675wpdj5qtmwd5kqp75rg8
   - &host_ray age1udsnzrehdy2hzgsvqu3je7uq9t0cue27slusps7r04l3gc7dk5fqcug5zq
-  - &host_testvm age165as8ew5e2sdppgyfmz9mtpm5ml2as6h4y936fx6s3pk92wjdvnsnl4ntp
+  - &host_testvm age12j0f82luc4zn59tqyeckc666fgw5qh7h680f5kxsn0v5nkn68g2qhmkkx9
   - &host_rex age1cmz3s2chhggv8656fj08zdqtjz3q4cyu5rcy7a4j629zzycak3us7ax3dq
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$

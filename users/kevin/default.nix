@@ -1,15 +1,15 @@
 { pkgs, config, lib, ... }:
 {
-  sops.secrets.hashedPassword.neededForUsers = true;
- 
+
+sops.secrets.hashedPassword.neededForUsers = true;
   ## TODO move this
   users.mutableUsers = false;
 
   users.users.kevin = {
     isNormalUser = true;
     extraGroups = [ 
-	    "network"
-	    "wheel" 
+      "network"
+      "wheel" 
       "input"
       "bluetooth"
     ];

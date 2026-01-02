@@ -4,7 +4,8 @@ imports = [inputs.impermanence.nixosModules.impermanence];
 
   environment.persistence."/persist" = {
     directories = [
-      "/etc/nixos"
+      "/var/log"
+      "/var/lib/nixos"
     ];
 
     files = [
@@ -14,4 +15,6 @@ imports = [inputs.impermanence.nixosModules.impermanence];
       "/etc/ssh/ssh_host_ed25519_key.pub"
     ];
   };
+
+  fileSystems."/persist".neededForBoot = true;
 }

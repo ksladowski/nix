@@ -1,48 +1,47 @@
 {
-  boot.initrd.systemd = {
-    enable = true; # this enabled systemd support in stage1 - required for the below setup
-    services.rollback = {
-      description = "Rollback BTRFS root subvolume to a pristine state";
+  lib,
+  config,
+  ...
+}: let
+  root = config.fileSystems."/";
+
+  wipeScript = ''
+    mkdir /tmp -p
+    MNTPOINT=$(mktemp -d)
+    (
+      mount -t btrfs -o subvol=/ ${root.device} "$MNTPOINT"
+      trap 'umount "$MNTPOINT"' EXIT
+
+      echo "Creating needed directories"
+      mkdir -p "$MNTPOINT"/persist/var/{log,lib/{nixos,systemd}}
+      if [ -e "$MNTPOINT/dont-wipe" ]; then
+        echo "Skipping wipe"
+      else
+        echo "Cleaning root subvolume"
+        btrfs subvolume delete -R "$MNTPOINT/root"
+        echo "Restoring blank subvolume"
+        btrfs subvolume snapshot "$MNTPOINT/root-blank" "$MNTPOINT/root"
+      fi
+    )
+  '';
+
+  # Convert a device path to a systemd .device
+  toSystemdDevice = device: lib.concatStringsSep "-" (lib.tail (map (lib.replaceString "-" "\\x2d" ) (lib.splitString "/" device))) + ".device";
+
+  phase1Systemd = config.boot.initrd.systemd.enable;
+in {
+  boot.initrd = {
+    supportedFilesystems = ["btrfs"];
+    postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
+    systemd.services.restore-root = lib.mkIf phase1Systemd {
+      description = "Rollback btrfs rootfs";
       wantedBy = ["initrd.target"];
-
-      after = ["systemd-cryptsetup@crypted.service"];
-
-      before = ["root.mount"];
-
+      requires = [(toSystemdDevice root.device)];
+      after = [(toSystemdDevice root.device)];
+      before = ["sysroot.mount"];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
-      script = ''
-        mkdir -p /mnt
-
-        # We first mount the BTRFS root to /mnt
-        # so we can manipulate btrfs subvolumes.
-        mount -o subvol=/ /dev/mapper/crypted /mnt
-
-        # While we're tempted to just delete /root and create
-        # a new snapshot from /root-blank, /root is already
-        # populated at this point with a number of subvolumes,
-        # which makes `btrfs subvolume delete` fail.
-        # So, we remove them first.
-        #
-        # /root contains subvolumes:
-        # - /root/var/lib/portables
-        # - /root/var/lib/machines
-
-        btrfs subvolume list -o /mnt/root |
-          cut -f9 -d' ' |
-          while read subvolume; do
-            echo "deleting /$subvolume subvolume..."
-            btrfs subvolume delete "/mnt/$subvolume"
-          done &&
-          echo "deleting /root subvolume..." &&
-          btrfs subvolume delete /mnt/root
-        echo "restoring blank /root subvolume..."
-        btrfs subvolume snapshot /mnt/root-blank /mnt/root
-
-        # Once we're done rolling back to a blank snapshot,
-        # we can unmount /mnt and continue on the boot process.
-        umount /mnt
-      '';
+      script = wipeScript;
     };
   };
 }
