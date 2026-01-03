@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.impermanence.homeManagerModules.impermanence
@@ -16,7 +16,6 @@
   ];
 
   programs.home-manager.enable = true;
-  programs.fuse.userAllowOther = true;
   home = {
     persistence."/persist/home/kevin" = {
       allowOther = true;

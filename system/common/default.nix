@@ -17,6 +17,7 @@
   ];
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
 
+  programs.fuse.userAllowOther = true;
   systemd.tmpfiles.rules = [
     "d /persist/home/kevin 0700 kevin users"
   ];
