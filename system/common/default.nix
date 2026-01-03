@@ -13,7 +13,6 @@
 
 ## TODO move sops to new file, remove non persist directory
   sops.age.sshKeyPaths = [ 
-  "/etc/ssh/ssh_host_ed25519_key" 
   "/persist/etc/ssh/ssh_host_ed25519_key" 
   ];
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
