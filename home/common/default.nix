@@ -29,6 +29,7 @@
         ".config/vesktop"
         ".local/share/Steam"
         ".local/share/keyrings"
+        ".mozilla"
       ];
   };
 
