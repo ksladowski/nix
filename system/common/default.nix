@@ -5,8 +5,8 @@
     inputs.sops-nix.nixosModules.sops
     ./nix.nix
     ./vim.nix
-    ./niri.nix
     ./ssh.nix
+    ../../modules/system/niri
     ../../modules/system/sudo
   ];
 

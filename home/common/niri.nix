@@ -186,6 +186,11 @@
          {
          "eDP-1" = {
          enable = true;
+       mode = {
+         width = 1920;
+	 height = 1200;
+	 refresh = 60.0;
+       };
          scale = 1.0;
          position = {
          x = 0;
@@ -195,26 +200,46 @@
          })
          ## TODO call these out by name not port
       (lib.mkIf (osConfig.networking.hostName == "rex")
-       {
+      {
        "DP-4" = {
        enable = true;
-       mode = "2560x1440@144.006";
+       mode = {
+         width = 2560;
+	 height = 1440;
+	 refresh = 144.006;
+       };
        position  = {
        x = 1920;
        y = 0;
        };
        };
+       }
+       )
+      (lib.mkIf (osConfig.networking.hostName == "rex")
+      {
        "DP-2" = {
        enable = true;
-       mode = "1920x1080@144.001";
+       mode = {
+         width = 1920;
+	 height = 1080;
+	 refresh = 144.001;
+       };
        position = {
        x = 0;
        y = 380;
        };
        };
+       }
+       )
+      (lib.mkIf (osConfig.networking.hostName == "rex")
+      {
        "HDMI-A-3" = {
        enable = false;
-       mode = "1920x1080@60";
+       mode = {
+         width = 1920;
+	 height = 1080;
+	 refresh = 60.0;
+       };
        scale = 1.0;
        position = {
          x = 0;
