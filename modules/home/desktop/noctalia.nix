@@ -108,7 +108,7 @@
         wallpaper = {
           enabled = true;
           directory = "~/Pictures/Wallpapers";
-	  randomEnabled = true;
+	  overviewEnabled = true;
         };
         shortcuts = {
           left = [
@@ -130,9 +130,15 @@
           ];
           right = [];
         };
+	colorSchemes = {
+          predefinedScheme = "Catppuccin";
+	templates = {
+	  niri = true;
+	};
       };
       dock.enabled = false;
     };
     systemd.enable = true;
   };
+};
 }

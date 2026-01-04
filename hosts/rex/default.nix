@@ -11,7 +11,6 @@
     ../../system/bootloader.nix
     ../../system/bluetooth.nix
     ../../system/greetd.nix
-    ../../system/zsh.nix
     ../../system/zswap.nix
 
     ../../system/optional/steam

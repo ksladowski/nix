@@ -10,7 +10,6 @@
 
     ../../system/bootloader.nix
     ../../system/greetd.nix
-    ../../system/zsh.nix
     ../../system/zswap.nix
 
     ../../system/optional/impermanence
@@ -18,11 +17,6 @@
     ../../theming/stylix.nix
 
   ];
-
-  sops.secrets."wifi/home/ssid" = {};
-  sops.secrets."wifi/home/psk" = {};
-  sops.secrets."wifi/home-5g/ssid" = {};
-  sops.secrets."wifi/home-5g/psk" = {};
 
   networking = {
     hostName = "testvm";

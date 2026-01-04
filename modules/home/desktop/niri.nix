@@ -4,7 +4,6 @@
 
   imports = [ 
     inputs.niri.homeModules.niri 
-    inputs.niri.homeModules.stylix
   ];
 
   programs.niri = {
@@ -57,8 +56,17 @@
       }
       ];
 
+      layer-rules = [
+        {
+	  matches = [
+		  {namespace = "^noctalia-overview*";}
+	  ];
+	  place-within-backdrop = true;
+	}
+      ];
+
       binds = {
-        "Mod+Return".action.spawn = "alacritty";
+        "Mod+Return".action.spawn = "ghostty";
 
         "Mod+Space".action.spawn = "fuzzel";
 

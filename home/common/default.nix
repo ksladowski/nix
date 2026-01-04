@@ -2,14 +2,15 @@
 {
   imports = [
     inputs.impermanence.homeManagerModules.impermanence
-    ./alacritty.nix
     ./git.nix
-    ./shell.nix
-    ./neovim.nix
     ../../modules/home/discord
     ../../modules/home/bitwarden
     ../../modules/home/desktop
     ../../modules/home/firefox
+    ../../modules/home/catppuccin
+    ../../modules/home/ghostty
+    ../../modules/home/shell
+    ../../modules/home/neovim
   ];
 
   programs.home-manager.enable = true;
@@ -27,6 +28,7 @@
         ".local/share/Steam"
         ".local/share/keyrings"
         ".mozilla"
+	".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
       ];
   };
 

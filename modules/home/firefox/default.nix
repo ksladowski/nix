@@ -134,7 +134,5 @@
         };
       };
   };
-  stylix.targets.firefox.profileNames = [ "default" ];
-  stylix.targets.firefox.colorTheme.enable = true;
 
 }

@@ -8,6 +8,8 @@
     ./ssh.nix
     ../../modules/system/niri
     ../../modules/system/sudo
+    ../../modules/system/shell
+    ../../modules/system/nfs
   ];
 
   time.timeZone = "America/Chicago";
