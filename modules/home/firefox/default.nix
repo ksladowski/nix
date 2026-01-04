@@ -1,4 +1,4 @@
-{ inputs, outputs, config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
 
 ## Currently on a fresh install, this opens all the "first run" tabs for any installed extensions, the sidebar button doesn't appear until the second launch, and the first time you close with tabs open, ff will prompt for you to restore them on next launch. I just open and close ff 2-3 times and it gets all this out of the system
@@ -101,6 +101,7 @@
 	"browser.toolbarbuttons.introduced.sidebar-button" = true; # without explicitly enabling here, it gets put in the wrong place when configured below
 	"browser.urlbar.quicksuggest.enabled" = false;
 	"browser.urlbar.suggest.topsites" = false;
+	"browser.urlbar.suggest.history" = false;
         "browser.uiCustomization.state" = builtins.toJSON {
             placements = {
               widget-overflow-fixed-list = [

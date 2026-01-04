@@ -108,6 +108,7 @@
         wallpaper = {
           enabled = true;
           directory = "~/Pictures/Wallpapers";
+	  randomEnabled = true;
         };
         shortcuts = {
           left = [

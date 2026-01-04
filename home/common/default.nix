@@ -3,16 +3,13 @@
   imports = [
     inputs.impermanence.homeManagerModules.impermanence
     ./alacritty.nix
-    ./firefox.nix
-    ./niri.nix
     ./git.nix
     ./shell.nix
-    ./fuzzel.nix
-    ./swayidle.nix
-    ./noctalia.nix
     ./neovim.nix
     ../../modules/home/discord
     ../../modules/home/bitwarden
+    ../../modules/home/desktop
+    ../../modules/home/firefox
   ];
 
   programs.home-manager.enable = true;
