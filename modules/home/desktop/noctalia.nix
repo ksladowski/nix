@@ -74,6 +74,9 @@
 					];
 				};
 			};
+			appLauncher = {
+			terminalCommand = "ghostty -e";
+			};
 			controlCenter = {
 				cards = [
 				{

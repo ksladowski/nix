@@ -5,13 +5,17 @@
 catppuccin = {
   cursors.enable = true;
   ghostty.enable = true;
-  firefox.enable = true;
+  firefox ={
+  enable = true;
+  profiles.default = {
+    enable = true;
+    force = true;
+  };
+  };
   fish.enable = true;
   fzf.enable = true;
-  fuzzel.enable = true;
   vesktop.enable = true;
   yazi.enable = true;
-  nvim.enable = true;
 };
 
 }

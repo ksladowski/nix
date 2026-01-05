@@ -66,6 +66,7 @@
         force = true;
         packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
+	  firefox-color
             bitwarden
             consent-o-matic
             vimium-c
@@ -90,15 +91,16 @@
         "browser.aboutConfig.showWarning" = false;
         "browser.tabs.loadInBackground" = true;
         "browser.in-content.dark-mode" = true; # Use dark mode
-        "ui.systemUsesDarkTheme" = true;
+	"ui.systemUsesDarkTheme" = 1; # this weirdly seems to only work when a theme is applied?
         "extensions.autoDisableScopes" = 0; # Auto enable installed extensions
         "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one
         "browser.tabs.inTitlebar" = 0;
 	"sidebar.verticalTabs" = true;
         "sidebar.revamp" = true;
+	"sidebar.expandOnHover" = false;
+	"sidebar.visibility" = "always-show";
         "sidebar.main.tools" = ["history" "bookmarks"];
 	"sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
-	"browser.toolbarbuttons.introduced.sidebar-button" = true; # without explicitly enabling here, it gets put in the wrong place when configured below
 	"browser.urlbar.quicksuggest.enabled" = false;
 	"browser.urlbar.suggest.topsites" = false;
 	"browser.urlbar.suggest.history" = false;

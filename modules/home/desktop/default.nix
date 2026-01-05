@@ -4,7 +4,6 @@
     ./niri.nix
     ./swayidle.nix
     ./noctalia.nix
-    ./fuzzel.nix
   ];
 
   home.file."Pictures/Wallpapers" = {
