@@ -10,6 +10,7 @@ let shellAliases = {
 
 	nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
 	ncd = "cd ~/src/nix";
+	nfu = "nix flake update --flake ~/src/nix";
 };
 in
 {

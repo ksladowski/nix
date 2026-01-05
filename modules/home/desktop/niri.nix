@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, osConfig, ... }:
+{ inputs, pkgs, lib, osConfig, config, ... }:
 {
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
@@ -31,8 +31,16 @@
 
       layout = {
         border.enable = false;
-        focus-ring.enable = true;
-        shadow.enable = true;
+	# TODO these are hardcoded and probably shouldn't be. Use nix-colors (or stylix if it has the option) and import the palette
+        focus-ring = {
+		enable = true;
+		active = { color = "#cba6f7"; };
+		inactive = { color = "#7f849c"; };
+	};
+        shadow ={
+enable = true;
+color = "#0007";
+	};
         default-column-width.proportion = 0.5;
       };
 
@@ -68,7 +76,16 @@
       binds = {
         "Mod+Return".action.spawn = "ghostty";
 
-        "Mod+Space".action.spawn = "fuzzel";
+        "Mod+Space".action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+        "Mod+Alt+L".action.spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
+
+        "Mod+N".action.spawn = ["noctalia-shell" "ipc" "call" "notifications" "toggleHistory"];
+        "Mod+Shift+N".action.spawn = ["noctalia-shell" "ipc" "call" "notifications" "clear"];
+        "Mod+Alt+N".action.spawn = ["noctalia-shell" "ipc" "call" "notifications" "toggleDND"];
+
+        "Mod+Alt+P".action.power-off-monitors = {};
+
+        "Mod+Shift+Escape".action.spawn = ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
 
         "Mod+O" = {
           action.toggle-overview = {};
@@ -161,8 +178,6 @@
         };
 
         "Ctrl+Alt+Delete".action.quit = {};
-
-        "Mod+Shift+P".action.power-off-monitors = {};
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
