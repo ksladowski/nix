@@ -22,7 +22,6 @@
         "Downloads"
         "Pictures"
         "src"
-        ".config/nvim"
         ".config/Bitwarden"
         ".config/vesktop"
         ".local/share/Steam"

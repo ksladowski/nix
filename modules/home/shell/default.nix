@@ -18,10 +18,22 @@ in
 	home = {
 		packages = with pkgs; [
 			grc
-			yazi
-			lazygit
+			fd
+			z-lua
+			more
 		];
 	};
+
+	programs.bat.enable = true;
+
+	# TODO separate this into a module and configure it. nerd font icons, no sponsor popup (b/c impermanence), etc
+	programs.lazygit = {
+		enable = true;
+		enableFishIntegration = true;
+	};
+
+	programs.yazi.enable = true;
+	programs.htop.enable = true;
 
 	programs.eza = {
 		enable = true;

@@ -7,8 +7,8 @@
     defaultEditor = true;
   };
 
-  # xdg.configFile.nvim = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/nvim";
-  #   recursive = true;
-  # };
+  xdg.configFile.nvim = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/nvim";
+    recursive = true;
+  };
 }
