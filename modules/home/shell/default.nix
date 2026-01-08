@@ -19,12 +19,13 @@ in
 		packages = with pkgs; [
 			grc
 			fd
-			z-lua
 			more
 		];
 	};
 
 	programs.bat.enable = true;
+
+	programs.zoxide.enable = true;
 
 	# TODO separate this into a module and configure it. nerd font icons, no sponsor popup (b/c impermanence), etc
 	programs.lazygit = {

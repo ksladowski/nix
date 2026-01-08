@@ -1,5 +1,13 @@
 { config, ... }:
 {
+
+# TODO should probably put this in a dev shell? Depends how often I edit the nvim config
+	home = {
+		packages = with pkgs; [
+			stylua
+		];
+	};
+
   programs.neovim = {
     enable = true;
     viAlias = true;
