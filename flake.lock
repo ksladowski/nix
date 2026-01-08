@@ -268,6 +268,26 @@
         "type": "github"
       }
     },
+    "jackify": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767673777,
+        "narHash": "sha256-sfLKpRwmwK+ci097I1bmK6BBKMWxWFV5Nt3816bJ660=",
+        "owner": "keygenesis",
+        "repo": "jackify",
+        "rev": "b71efa028cb616ab22488fee2ebbf03f77baf0cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "keygenesis",
+        "repo": "jackify",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -462,6 +482,7 @@
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "jackify": "jackify",
         "niri": "niri",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",

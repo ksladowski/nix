@@ -11,6 +11,8 @@
     ../../modules/home/ghostty
     ../../modules/home/shell
     ../../modules/home/neovim
+    ../../modules/home/super-slicer
+    ../../modules/home/jackify
   ];
 
   programs.home-manager.enable = true;
@@ -28,6 +30,7 @@
         ".local/share/keyrings"
         ".mozilla"
 	".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
+	".ssh"
       ];
   };
 

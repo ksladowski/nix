@@ -48,6 +48,11 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    jackify = {
+      url = "github:keygenesis/jackify";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { ... } @ inputs:

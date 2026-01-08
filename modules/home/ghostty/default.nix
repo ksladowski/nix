@@ -8,6 +8,7 @@
       window-padding-x = 4;
       window-padding-y = 4;
       window-padding-balance = true;
+      link-previews = false;
     };
     enableFishIntegration = true;
   };

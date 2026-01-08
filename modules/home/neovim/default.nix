@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
 
 # TODO should probably put this in a dev shell? Depends how often I edit the nvim config
