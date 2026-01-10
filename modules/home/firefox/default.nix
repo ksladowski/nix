@@ -74,9 +74,14 @@
       };
       search = {
         force = true;
-        default = "searx";
-        order = [ "searx" "ddg" ];
+        default = "kagi";
+        order = [ "kagi" "searx" "ddg" ];
         engines = {
+          kagi = {
+            name = "kagi";
+            urls = [{ template = "https://kagi.com/search?q={searchTerms}"; }];
+            icon = "https://kagi.com/favicon.ico";
+          };
           searx = {
             name = "searx";
             urls = [{ template = "https://searx.sladnet.xyz/?q={searchTerms}"; }];

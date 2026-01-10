@@ -6,6 +6,7 @@ imports = [inputs.impermanence.nixosModules.impermanence];
     directories = [
       "/var/log"
       "/var/lib/nixos"
+      "/var/lib/bluetooth"
     ];
 
     files = [

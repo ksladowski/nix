@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    inputs.impermanence.homeManagerModules.impermanence
     ./git.nix
     ../../modules/home/discord
     ../../modules/home/bitwarden
@@ -17,12 +16,12 @@
 
   programs.home-manager.enable = true;
   home = {
-    persistence."/persist/home/kevin" = {
-      allowOther = true;
+    persistence."/persist" = {
       directories = [
         "Documents"
         "Downloads"
         "Pictures"
+        "Games"
         "src"
         ".config/Bitwarden"
         ".config/vesktop"
