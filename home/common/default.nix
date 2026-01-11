@@ -23,13 +23,9 @@
         "Pictures"
         "Games"
         "src"
-        ".config/Bitwarden"
-        ".config/vesktop"
-        ".local/share/Steam"
+        ".ssh"
         ".local/share/keyrings"
-        ".mozilla"
-	".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
-	".ssh"
+        ".local/share/Steam" #TODO need to figure out how to share HM and system config
       ];
   };
 

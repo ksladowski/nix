@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
 
 home = {
@@ -8,6 +8,10 @@ home = {
     ];
 
     sessionVariables.SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
-     
+
+    persistence."/persist".directories = lib.mkAfter [
+        ".config/Bitwarden"
+    ];
+
     };
 }

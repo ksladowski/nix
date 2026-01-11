@@ -1,11 +1,18 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 {
 
-# TODO should probably put this in a dev shell? Depends how often I edit the nvim config
 	home = {
 		packages = with pkgs; [
+      tree-sitter
 			stylua
+      alejandra
 		];
+
+  persistence."/persist".directories = lib.mkAfter [
+        ".local/share/nvim"
+        ".local/state/nvim"
+        ".cache/nvim"
+    ];
 	};
 
   programs.neovim = {

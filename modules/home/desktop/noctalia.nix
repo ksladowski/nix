@@ -3,6 +3,10 @@
 
 	imports = [ inputs.noctalia.homeModules.default ];
 
+  home.persistence."/persist".directories = lib.mkAfter [
+        ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
+    ];
+
 	programs.noctalia-shell = {
 		enable = true;
 		systemd.enable = true;

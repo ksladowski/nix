@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
 
 ## Currently on a fresh install, this opens all the "first run" tabs for any installed extensions, the sidebar button doesn't appear until the second launch, and the first time you close with tabs open, ff will prompt for you to restore them on next launch. I just open and close ff 2-3 times and it gets all this out of the system
@@ -66,7 +66,7 @@
         force = true;
         packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
-	  firefox-color
+            firefox-color
             bitwarden
             consent-o-matic
             vimium-c
@@ -141,5 +141,8 @@
         };
       };
   };
+  home.persistence."/persist".directories = lib.mkAfter [
+        ".mozilla"
+    ];
 
 }

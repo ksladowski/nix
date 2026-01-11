@@ -1,8 +1,12 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
+
+  home.persistence."/persist".directories = lib.mkAfter [
+        ".config/vesktop"
+    ];
 
   programs.nixcord = {
     enable = true;
@@ -17,8 +21,8 @@
       ircColors.enable = true;
       replaceGoogleSearch = {
         enable = true;
-        customEngineName = "Searx";
-        customEngineURL = "https://searx.sladnet.xyz/search?q=";
+        customEngineName = "Kagi";
+        customEngineURL = "https://kagi.com/search?q=";
         replacementEngine = "custom";
       };
       noTypingAnimation.enable = true;
