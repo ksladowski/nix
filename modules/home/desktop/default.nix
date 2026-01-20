@@ -1,4 +1,7 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  ...
+}:
 {
   imports = [
     ./niri.nix
@@ -11,4 +14,4 @@
     recursive = true;
   };
 
-  }
+}

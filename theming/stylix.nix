@@ -5,9 +5,9 @@
   stylix = {
     fonts = {
       monospace = {
-          name = "JetBrains Mono Nerd Font";
-          package = pkgs.nerd-fonts.jetbrains-mono;
-        };
+        name = "JetBrains Mono Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+      };
     };
   };
 }

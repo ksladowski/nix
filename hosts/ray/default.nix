@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -17,17 +17,16 @@
     ../../system/optional/tlp
     ../../system/optional/upower
     ../../system/optional/brightnessctl
-    ../../system/optional/steam
     ../../system/optional/impermanence
 
     ../../theming/stylix.nix
 
   ];
 
-  sops.secrets."wifi/home/ssid" = {};
-  sops.secrets."wifi/home/psk" = {};
-  sops.secrets."wifi/home-5g/ssid" = {};
-  sops.secrets."wifi/home-5g/psk" = {};
+  sops.secrets."wifi/home/ssid" = { };
+  sops.secrets."wifi/home/psk" = { };
+  sops.secrets."wifi/home-5g/ssid" = { };
+  sops.secrets."wifi/home-5g/psk" = { };
 
   networking = {
     hostName = "ray";
@@ -40,7 +39,7 @@
           config.sops.secrets."wifi/home-5g/ssid".path
           config.sops.secrets."wifi/home-5g/psk".path
         ];
-	profiles = {
+        profiles = {
           "$HOME_SSID" = {
             connection = {
               id = "$HOME_SSID";

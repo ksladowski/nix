@@ -1,11 +1,14 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
     settings = {
       auto-optimise-store = lib.mkDefault true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       warn-dirty = false;
     };
     gc = {

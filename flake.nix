@@ -28,7 +28,7 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,21 +55,22 @@
 
   };
 
-  outputs = { ... } @ inputs:
-  {
-    nixosConfigurations = {
-      ray = inputs.nixpkgs.lib.nixosSystem {
-        modules = [ ./hosts/ray ];
-        specialArgs = { inherit inputs; };
-      };
-      rex = inputs.nixpkgs.lib.nixosSystem {
-        modules = [ ./hosts/rex ];
-        specialArgs = { inherit inputs; };
-      };
-      testvm = inputs.nixpkgs.lib.nixosSystem {
-        modules = [ ./hosts/testvm ];
-        specialArgs = { inherit inputs; };
+  outputs =
+    { ... }@inputs:
+    {
+      nixosConfigurations = {
+        ray = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/ray ];
+          specialArgs = { inherit inputs; };
+        };
+        rex = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/rex ];
+          specialArgs = { inherit inputs; };
+        };
+        testvm = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/testvm ];
+          specialArgs = { inherit inputs; };
+        };
       };
     };
-  };
 }

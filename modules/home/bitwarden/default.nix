@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
 
-home = {
+  home = {
     packages = with pkgs; [
       bitwarden-desktop
       bitwarden-cli
@@ -10,8 +10,8 @@ home = {
     sessionVariables.SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
 
     persistence."/persist".directories = lib.mkAfter [
-        ".config/Bitwarden"
+      ".config/Bitwarden"
     ];
 
-    };
+  };
 }

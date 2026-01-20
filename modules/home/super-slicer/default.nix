@@ -1,9 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
 
-	home = {
-		packages = with pkgs; [
-			super-slicer-latest
-		];
-	};
+  home = {
+    packages = with pkgs; [
+      super-slicer-latest
+    ];
+  };
 }

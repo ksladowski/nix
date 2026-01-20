@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./git.nix
@@ -25,9 +25,9 @@
         "src"
         ".ssh"
         ".local/share/keyrings"
-        ".local/share/Steam" #TODO need to figure out how to share HM and system config
+        ".local/share/Steam" # TODO need to figure out how to share HM and system config
       ];
-  };
+    };
 
     username = "kevin";
     homeDirectory = "/home/kevin";

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
 
   services.greetd = {
@@ -16,7 +16,10 @@
   users.users.greeter = {
     isNormalUser = false;
     description = "greetd greeter user";
-    extraGroups = [ "video" "audio" ];
+    extraGroups = [
+      "video"
+      "audio"
+    ];
     linger = true;
   };
 

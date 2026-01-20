@@ -1,6 +1,6 @@
 {
-security.sudo.extraConfig = ''
-  Defaults lecture = never
-'';
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 
 }

@@ -1,12 +1,12 @@
 {
-	services.openssh = {
-		enable = true;
-		settings = {
-			PasswordAuthentication = false;
-			KbdInteractiveAuthentication = false;
-			PermitRootLogin = "no";
-			AllowUsers = [ "kevin" ];
-		};
-	};
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "kevin" ];
+    };
+  };
 
 }

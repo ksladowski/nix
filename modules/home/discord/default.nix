@@ -5,13 +5,13 @@
   ];
 
   home.persistence."/persist".directories = lib.mkAfter [
-        ".config/vesktop"
-    ];
+    ".config/vesktop"
+  ];
 
   programs.nixcord = {
     enable = true;
     discord.enable = false; # don't want normal discord client
-    vesktop ={
+    vesktop = {
       enable = true;
       settings.arRPC = false;
       state.firstLaunch = false;

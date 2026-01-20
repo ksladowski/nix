@@ -1,23 +1,28 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
 
-	home = {
-		packages = with pkgs; [
+  home = {
+    packages = with pkgs; [
       tree-sitter
-			stylua
+      stylua
       luarocks
       lua-language-server
-			lua5_1
+      lua5_1
       nil
       nixfmt
-		];
-
-  persistence."/persist".directories = lib.mkAfter [
-        ".local/share/nvim"
-        ".local/state/nvim"
-        ".cache/nvim"
     ];
-	};
+
+    persistence."/persist".directories = lib.mkAfter [
+      ".local/share/nvim"
+      ".local/state/nvim"
+      ".cache/nvim"
+    ];
+  };
 
   programs.neovim = {
     enable = true;

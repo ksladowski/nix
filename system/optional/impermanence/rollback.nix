@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   root = config.fileSystems."/";
 
   wipeScript = ''
@@ -26,19 +27,25 @@
   '';
 
   # Convert a device path to a systemd .device
-  toSystemdDevice = device: lib.concatStringsSep "-" (lib.tail (map (lib.replaceString "-" "\\x2d" ) (lib.splitString "/" device))) + ".device";
+  toSystemdDevice =
+    device:
+    lib.concatStringsSep "-" (
+      lib.tail (map (lib.replaceString "-" "\\x2d") (lib.splitString "/" device))
+    )
+    + ".device";
 
   phase1Systemd = config.boot.initrd.systemd.enable;
-in {
+in
+{
   boot.initrd = {
-    supportedFilesystems = ["btrfs"];
+    supportedFilesystems = [ "btrfs" ];
     postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
     systemd.services.restore-root = lib.mkIf phase1Systemd {
       description = "Rollback btrfs rootfs";
-      wantedBy = ["initrd.target"];
-      requires = [(toSystemdDevice root.device)];
-      after = [(toSystemdDevice root.device)];
-      before = ["sysroot.mount"];
+      wantedBy = [ "initrd.target" ];
+      requires = [ (toSystemdDevice root.device) ];
+      after = [ (toSystemdDevice root.device) ];
+      before = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = wipeScript;

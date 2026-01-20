@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 {
 
-  home.packages = with pkgs; [
-          inputs.jackify.packages.${pkgs.system}.default
+  home.packages = [
+    inputs.jackify.packages.${pkgs.system}.default
   ];
 }

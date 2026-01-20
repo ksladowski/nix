@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -33,25 +33,41 @@
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "nixos" "-f"];
-		  postCreateHook = ''
-			  MNTPOINT=$(mktemp -d)
-			  mount -t btrfs "$device" "$MNTPOINT"
-			  trap 'umount $MNTPOINT; rm -d $MNTPOINT' EXIT
-			  btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-blank
-			  '';
+                  extraArgs = [
+                    "-L"
+                    "nixos"
+                    "-f"
+                  ];
+                  postCreateHook = ''
+                    			  MNTPOINT=$(mktemp -d)
+                    			  mount -t btrfs "$device" "$MNTPOINT"
+                    			  trap 'umount $MNTPOINT; rm -d $MNTPOINT' EXIT
+                    			  btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-blank
+                    			  '';
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = ["subvol=root" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=root"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=nix"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/persist" = {
                       mountpoint = "/persist";
-                      mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=persist"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/swap" = {
                       mountpoint = "/swap";
