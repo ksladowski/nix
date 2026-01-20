@@ -5,7 +5,11 @@
 		packages = with pkgs; [
       tree-sitter
 			stylua
-      alejandra
+      luarocks
+      lua-language-server
+			lua5_1
+      nil
+      nixfmt
 		];
 
   persistence."/persist".directories = lib.mkAfter [
