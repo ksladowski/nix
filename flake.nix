@@ -57,18 +57,53 @@
 
   outputs =
     { ... }@inputs:
+    let
+      lib = inputs.nixpkgs.lib;
+
+      supportedSystems = [ "x86_64-linux" ];
+
+      forAllSystems =
+        apply: lib.genAttrs supportedSystems (system: apply inputs.nixpkgs.legacyPackages.${system});
+
+      recursiveImport = import ./recursiveImport.nix { inherit lib; };
+
+      specialArgs = {
+        inherit inputs;
+        baseVars = {
+          username = "kevin";
+          homeDirectory = "/home/kevin";
+        };
+      };
+    in
     {
+      # packages = forAllSystems (pkgs: {
+      #   # Example package: obviously you would actually define a custom package
+      #   # here in practice
+      #   default = pkgs.git;
+      # });
+      #
+      # devShells = forAllSystems (pkgs: {
+      #   default = pkgs.mkShellNoCC {
+      #     # Also only for demo purposes
+      #     packages = [ pkgs.git ];
+      #   };
+      # });
+
       nixosConfigurations = {
-        ray = inputs.nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/ray ];
-          specialArgs = { inherit inputs; };
+        ray = lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostname = "ray";
+              stateVersion = "25.05";
+            };
+          };
+          modules = recursiveImport [
+            ./modules
+            ./hosts/ray
+          ];
         };
-        rex = inputs.nixpkgs.lib.nixosSystem {
+        rex = lib.nixosSystem {
           modules = [ ./hosts/rex ];
-          specialArgs = { inherit inputs; };
-        };
-        testvm = inputs.nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/testvm ];
           specialArgs = { inherit inputs; };
         };
       };

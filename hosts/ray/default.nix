@@ -3,24 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
-
-    ../../users/kevin
-
-    ../../system/common
-
-    ../../system/bootloader.nix
-    ../../system/bluetooth.nix
-    ../../system/greetd.nix
-    ../../system/zswap.nix
-
-    ../../system/optional/keyd
-    ../../system/optional/tlp
-    ../../system/optional/upower
-    ../../system/optional/brightnessctl
-    ../../system/optional/impermanence
-
-    ../../theming/stylix.nix
-
   ];
 
   sops.secrets."wifi/home/ssid" = { };
