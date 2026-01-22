@@ -1,11 +1,10 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }:
-{
 
+{
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   environment.systemPackages = with pkgs; [ xwayland-satellite ];
@@ -287,69 +286,6 @@
             ];
           };
         };
-        outputs = lib.mkMerge [
-          # (lib.mkIf (osConfig.networking.hostName == "ray")
-          {
-            "eDP-1" = {
-              enable = true;
-              mode = {
-                width = 1920;
-                height = 1200;
-                refresh = 60.0;
-              };
-              scale = 1.0;
-              position = {
-                x = 0;
-                y = 0;
-              };
-            };
-          }
-          # )
-          ## TODO call these out by name not port
-          # (lib.mkIf (osConfig.networking.hostName == "rex") {
-          #   "DP-4" = {
-          #     enable = true;
-          #     mode = {
-          #       width = 2560;
-          #       height = 1440;
-          #       refresh = 144.006;
-          #     };
-          #     position = {
-          #       x = 1920;
-          #       y = 0;
-          #     };
-          #   };
-          # })
-          # (lib.mkIf (osConfig.networking.hostName == "rex") {
-          #   "DP-2" = {
-          #     enable = true;
-          #     mode = {
-          #       width = 1920;
-          #       height = 1080;
-          #       refresh = 144.001;
-          #     };
-          #     position = {
-          #       x = 0;
-          #       y = 380;
-          #     };
-          #   };
-          # })
-          # (lib.mkIf (osConfig.networking.hostName == "rex") {
-          #   "HDMI-A-3" = {
-          #     enable = false;
-          #     mode = {
-          #       width = 1920;
-          #       height = 1080;
-          #       refresh = 60.0;
-          #     };
-          #     scale = 1.0;
-          #     position = {
-          #       x = 0;
-          #       y = 0;
-          #     };
-          #   };
-          # })
-        ];
       };
     };
   };

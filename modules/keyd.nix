@@ -1,26 +1,39 @@
-{ ... }:
 {
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [ "0001:0001" ];
-        settings = {
-          main = {
-            capslock = "layer(control)";
-            leftcontrol = "esc";
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.systemSettings.keyd;
+in
+{
+  options.systemSettings.keyd = {
+    enable = lib.mkEnableOption "Enable keyd";
+  };
+
+  config = lib.mkIf cfg.enable {
+    services.keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = [ "0001:0001" ];
+          settings = {
+            main = {
+              capslock = "layer(control)";
+              leftcontrol = "esc";
+            };
           };
         };
       };
     };
-  };
 
-  # Optional, but makes sure that when you type the make palm rejection work with keyd
-  # https://github.com/rvaiya/keyd/issues/723
-  environment.etc."libinput/local-overrides.quirks".text = ''
-    [Serial Keyboards]
-    MatchUdevType=keyboard
-    MatchName=keyd virtual keyboard
-    AttrKeyboardIntegration=internal
-  '';
+    # Optional, but makes sure that when you type the make palm rejection work with keyd
+    # https://github.com/rvaiya/keyd/issues/723
+    environment.etc."libinput/local-overrides.quirks".text = ''
+      [Serial Keyboards]
+      MatchUdevType=keyboard
+      MatchName=keyd virtual keyboard
+      AttrKeyboardIntegration=internal
+    '';
+  };
 }

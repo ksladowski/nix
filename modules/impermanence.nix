@@ -71,7 +71,6 @@ in
     directories = [
       "/var/log"
       "/var/lib/nixos"
-      "/var/lib/bluetooth" # TODO move to bluetooth.nix
     ];
 
     files = [

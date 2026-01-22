@@ -1,9 +1,22 @@
 { config, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./disko-config.nix
+    ./hardware-configuration.nix
+    ./niri-outputs.nix
   ];
+
+  systemSettings = {
+
+    bluetooth.enable = true;
+
+    # Laptop
+    brightnessctl.enable = true;
+    keyd.enable = true;
+    tlp.enable = true;
+    upower.enable = true;
+
+  };
 
   sops.secrets."wifi/home/ssid" = { };
   sops.secrets."wifi/home/psk" = { };
