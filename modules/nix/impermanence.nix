@@ -2,6 +2,7 @@
   lib,
   inputs,
   config,
+  baseVars,
   ...
 }:
 
@@ -58,6 +59,7 @@ in
     inputs.impermanence.nixosModules.impermanence
 
     (lib.mkAliasOptionModule [ "persist" ] [ "environment" "persistence" "/persist" ])
+    (lib.mkAliasOptionModule [ "hm-persist" ] [ "hm" "home" "persistence" "/persist" ])
   ];
 
   fileSystems."/persist".neededForBoot = true;
@@ -83,7 +85,7 @@ in
     ];
   };
 
-  hm.home.persistence."/persist" = {
+  hm-persist = {
     directories = [
       "Documents"
       "Downloads"
@@ -92,7 +94,6 @@ in
       "src"
       ".ssh"
       ".local/share/keyrings"
-      # ".local/share/Steam" # TODO need to figure out how to share HM and system config
     ];
   };
 }

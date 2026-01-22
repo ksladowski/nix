@@ -12,7 +12,7 @@
     age.sshKeyPaths = [
       "/persist/etc/ssh/ssh_host_ed25519_key"
     ];
-    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFile = ../../secrets/secrets.yaml;
     secrets.hashedPassword.neededForUsers = true;
   };
 }
