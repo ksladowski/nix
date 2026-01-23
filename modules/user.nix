@@ -9,7 +9,6 @@
     users.kevin = {
       isNormalUser = true;
       extraGroups = [
-        "network"
         "wheel"
         "input"
       ];

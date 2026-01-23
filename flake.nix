@@ -95,7 +95,6 @@
             hostVars = {
               hostname = "ray";
               stateVersion = "25.05";
-              # bluetooth.enable = true;
             };
           };
           modules = recursiveImport [

@@ -1,24 +1,9 @@
 { ... }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./disko-config.nix
-
-    ../../users/kevin
-
-    ../../system/common
-
-    ../../system/bootloader.nix
-    ../../system/bluetooth.nix
-    ../../system/greetd.nix
-    ../../system/zswap.nix
-
-    ../../system/optional/steam
-    ../../system/optional/virtualization
-    ../../system/optional/impermanence
-
-    ../../theming/stylix.nix
-
+    ./hardware-configuration.nix
+    ./niri-outputs.nix
   ];
 
   networking = {

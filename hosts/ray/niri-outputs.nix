@@ -2,21 +2,21 @@
   ...
 }:
 {
-  hm = {
-    programs.niri.settings.outputs = {
-      "Chimei Innolux Corporation 0x1618 Unknown" = {
-        enable = true;
-        mode = {
-          width = 1920;
-          height = 1200;
-          refresh = 60.0;
-        };
-        scale = 1.0;
-        position = {
-          x = 0;
-          y = 0;
-        };
+
+  hm.programs.niri.settings.outputs = {
+    "Chimei Innolux Corporation 0x1618 Unknown" = {
+      enable = true;
+      mode = {
+        width = 1920;
+        height = 1200;
+        refresh = 60.0;
+      };
+      scale = 1.0;
+      position = {
+        x = 0;
+        y = 0;
       };
     };
   };
+
 }

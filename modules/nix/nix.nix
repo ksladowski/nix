@@ -1,7 +1,6 @@
-{ lib, ... }:
+{ lib, hostVars, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-
   nix = {
     settings = {
       auto-optimise-store = lib.mkDefault true;
@@ -17,4 +16,6 @@
       options = "--delete-older-than 7d";
     };
   };
+
+  system.stateVersion = hostVars.stateVersion;
 }
