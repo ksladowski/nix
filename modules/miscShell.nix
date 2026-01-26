@@ -7,8 +7,6 @@ let
     ll = "exa -al";
     tree = "exa -al --tree";
 
-    lg = "lazygit";
-
     nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
     ncd = "cd ~/src/nix";
     nfu = "nix flake update --flake ~/src/nix";
@@ -28,12 +26,6 @@ in
     programs.bat.enable = true;
 
     programs.zoxide.enable = true;
-
-    # TODO separate this into a module and configure it. nerd font icons, no sponsor popup (b/c impermanence), etc
-    programs.lazygit = {
-      enable = true;
-      enableFishIntegration = true;
-    };
 
     programs.yazi.enable = true;
     programs.htop.enable = true;

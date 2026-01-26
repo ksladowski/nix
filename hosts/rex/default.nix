@@ -13,6 +13,7 @@
     # Gaming
     steam.enable = true;
     jackify.enable = true;
+    sunshine.enable = true;
 
     hypervisor.enable = true;
 
