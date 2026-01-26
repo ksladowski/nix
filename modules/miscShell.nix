@@ -9,7 +9,9 @@ let
 
     nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
     ncd = "cd ~/src/nix";
+    ned = "cd ~/src/nix && nvim";
     nfu = "nix flake update --flake ~/src/nix";
+    nds = "nix develop --flake ~/src/nix";
   };
 in
 {

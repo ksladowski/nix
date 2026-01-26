@@ -76,9 +76,26 @@
       };
     in
     {
-      devShells = forAllSystems (pkgs: {
-        dotnet10 = import ./devShells/dotnet10.nix;
-      });
+      devShells = forAllSystems (
+        pkgs:
+        let
+          files = recursiveImport [ ./devShells ];
+
+          makeAttr =
+            p:
+            let
+              fname = builtins.baseNameOf p;
+              len = builtins.stringLength fname;
+              hasNix = len > 4 && builtins.substring (len - 4) 4 fname == ".nix";
+              name = if hasNix then builtins.substring 0 (len - 4) fname else fname;
+            in
+            {
+              name = name;
+              value = import p { inherit pkgs; };
+            };
+        in
+        builtins.listToAttrs (map makeAttr files)
+      );
 
       nixosConfigurations = {
         ray = lib.nixosSystem {
