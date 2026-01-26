@@ -103,9 +103,17 @@
           ];
         };
         rex = lib.nixosSystem {
-          modules = [ ./hosts/rex ];
-          specialArgs = { inherit inputs; };
-        };
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostname = "rex";
+              stateVersion = "25.05";
+            };
+          };
+          modules = recursiveImport [
+            ./modules
+            ./hosts/rex
+          ];
       };
     };
+};
 }

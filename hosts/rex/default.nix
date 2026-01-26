@@ -6,12 +6,17 @@
     ./niri-outputs.nix
   ];
 
-  networking = {
-    hostName = "rex";
-    networkmanager = {
-      enable = true;
-    };
-  };
+  systemSettings = {
 
-  system.stateVersion = "25.05";
+    bluetooth.enable = true;
+
+    # Gaming
+    steam.enable = true;
+    jackify.enable = true;
+
+    hypervisor.enable = true;
+
+    super-slicer.enable = true;
+
+  };
 }

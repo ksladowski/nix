@@ -16,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
 
     hm = {
-      hm.home.packages = with pkgs; [
+      home.packages = with pkgs; [
         super-slicer-latest
       ];
     };

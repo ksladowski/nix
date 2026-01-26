@@ -4,7 +4,7 @@
 {
 
   hm.programs.niri.settings.outputs = {
-    "DP-4" = {
+    "ASUSTek COMPUTER INC VG27AQ1A S6LMQS059549" = {
       enable = true;
       mode = {
         width = 2560;
@@ -16,7 +16,7 @@
         y = 0;
       };
     };
-    "DP-2" = {
+    "PNP(AOC) 24G2WG3- PIBMCJA000715" = {
       enable = true;
       mode = {
         width = 1920;
@@ -28,7 +28,7 @@
         y = 380;
       };
     };
-    "HDMI-A-3" = {
+    "PNP(XMD) Mi TV Unknown" = {
       enable = false;
       mode = {
         width = 1920;
