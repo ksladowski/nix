@@ -76,18 +76,9 @@
       };
     in
     {
-      # packages = forAllSystems (pkgs: {
-      #   # Example package: obviously you would actually define a custom package
-      #   # here in practice
-      #   default = pkgs.git;
-      # });
-      #
-      # devShells = forAllSystems (pkgs: {
-      #   default = pkgs.mkShellNoCC {
-      #     # Also only for demo purposes
-      #     packages = [ pkgs.git ];
-      #   };
-      # });
+      devShells = forAllSystems (pkgs: {
+        dotnet10 = import ./devShells/dotnet10.nix;
+      });
 
       nixosConfigurations = {
         ray = lib.nixosSystem {
@@ -113,7 +104,7 @@
             ./modules
             ./hosts/rex
           ];
+        };
       };
     };
-};
 }
