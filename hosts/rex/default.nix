@@ -15,6 +15,7 @@
     jackify.enable = true;
     sunshine.enable = true;
 
+    wine.enable = true;
     hypervisor.enable = true;
 
     super-slicer.enable = true;
