@@ -10,10 +10,23 @@
       ];
       warn-dirty = false;
     };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
     gc = {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 7d";
+    };
+  };
+
+  hm.home = {
+    shellAliases = {
+      nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
+      ncd = "cd ~/src/nix";
+      nfu = "nix flake update --flake ~/src/nix";
+      nds = "nix develop --flake ~/src/nix";
     };
   };
 

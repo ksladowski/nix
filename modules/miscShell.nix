@@ -1,19 +1,4 @@
 { pkgs, ... }:
-let
-  shellAliases = {
-
-    o = "xdg-open";
-
-    ll = "exa -al";
-    tree = "exa -al --tree";
-
-    nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
-    ncd = "cd ~/src/nix";
-    ned = "cd ~/src/nix && nvim";
-    nfu = "nix flake update --flake ~/src/nix";
-    nds = "nix develop --flake ~/src/nix";
-  };
-in
 {
   hm = {
 
@@ -29,42 +14,10 @@ in
 
     programs.zoxide.enable = true;
 
-    programs.yazi.enable = true;
     programs.htop.enable = true;
-
-    programs.eza = {
-      enable = true;
-      icons = "auto";
-      enableFishIntegration = true;
-      git = true;
-    };
 
     programs.fzf.enable = true;
     programs.ripgrep.enable = true;
-
-    programs.fish = {
-      inherit shellAliases;
-      enable = true;
-      interactiveShellInit = ''
-        			set fish_greeting # Disable greeting
-        			'';
-      plugins = [
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-        # { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
-        {
-          name = "pure";
-          src = pkgs.fishPlugins.pure.src;
-        }
-        # { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
-        {
-          name = "done";
-          src = pkgs.fishPlugins.done.src;
-        }
-      ];
-    };
 
   };
 }
