@@ -16,6 +16,7 @@
         lua5_1
         nil
         nixfmt
+        markdown-oxide
       ];
 
       persistence."/persist".directories = lib.mkAfter [

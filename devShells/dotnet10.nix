@@ -3,6 +3,7 @@ pkgs.mkShellNoCC {
   packages = with pkgs; [
     dotnet-sdk_10
     dotnet-runtime_10
+    dotnet-runtime_8
     dotnet-aspnetcore_10
 
     dotnet-ef

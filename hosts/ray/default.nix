@@ -11,6 +11,8 @@
     bluetooth.enable = true;
     wifi.enable = true;
 
+    moonlight.enable = true;
+
     # Laptop
     brightnessctl.enable = true;
     keyd.enable = true;
