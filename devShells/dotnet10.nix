@@ -14,7 +14,7 @@ pkgs.mkShellNoCC {
 
   shellHook = ''
     # Set DOTNET_ROOT to the correct location
-    export DOTNET_ROOT="${pkgs.dotnet-sdk_10}"
+    export DOTNET_ROOT="${pkgs.dotnet-sdk_10}/share/dotnet/"
 
     # Set the ASPNETCORE environment to Development
     export DOTNET_ENVIRONMENT=Development
