@@ -19,5 +19,7 @@
     tlp.enable = true;
     upower.enable = true;
 
+    nextcloud.enable = true;
+
   };
 }

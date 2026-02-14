@@ -30,6 +30,10 @@ in
       capSysNice = true;
     };
 
+    environment.systemPackages = with pkgs; [
+      vkd3d-proton
+    ];
+
     hm-persist.directories = lib.mkAfter [
       ".local/share/Steam"
     ];
