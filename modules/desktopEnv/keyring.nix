@@ -1,0 +1,12 @@
+{ pkgs, ... }:
+{
+  services.gnome.gnome-keyring.enable = true;
+
+  hm.home.packages = with pkgs; [ seahorse ];
+
+  hm-persist = {
+    directories = [
+      ".local/share/keyrings"
+    ];
+  };
+}

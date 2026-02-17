@@ -93,7 +93,6 @@ in
       "Games" # TODO make conditional?
       "src"
       ".ssh"
-      ".local/share/keyrings"
     ];
   };
 }

@@ -74,7 +74,6 @@
             ublock-origin
             firefox-color
             bitwarden
-            consent-o-matic
             vimium-c
           ];
         };
@@ -83,7 +82,6 @@
           default = "kagi";
           order = [
             "kagi"
-            "searx"
             "ddg"
           ];
           engines = {
@@ -91,11 +89,6 @@
               name = "kagi";
               urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
               icon = "https://kagi.com/favicon.ico";
-            };
-            searx = {
-              name = "searx";
-              urls = [ { template = "https://searx.sladnet.xyz/?q={searchTerms}"; } ];
-              icon = "https://searx.sladnet.xyz/favicon.ico";
             };
           };
         };
@@ -159,6 +152,11 @@
     home.persistence."/persist".directories = lib.mkAfter [
       ".mozilla"
     ];
+
+    stylix.targets.firefox = {
+      profileNames = [ "default" ];
+      colorTheme.enable = true;
+    };
   };
 
 }

@@ -38,5 +38,6 @@
       recursive = true;
     };
 
+    stylix.targets.neovim.enable = false;
   };
 }

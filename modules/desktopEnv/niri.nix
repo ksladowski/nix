@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }:
 
@@ -44,19 +45,18 @@
 
         layout = {
           border.enable = false;
-          # TODO these are hardcoded and probably shouldn't be. Use nix-colors (or stylix if it has the option) and import the palette
           focus-ring = {
             enable = true;
             active = {
-              color = "#cba6f7";
+              color = config.lib.stylix.colors.base0D;
             };
             inactive = {
-              color = "#7f849c";
+              color = config.lib.stylix.colors.base08;
             };
           };
           shadow = {
             enable = true;
-            color = "#0007";
+            color = config.lib.stylix.colors.base00;
           };
           default-column-width.proportion = 0.5;
         };

@@ -20,6 +20,7 @@
     upower.enable = true;
 
     nextcloud.enable = true;
+    element.enable = true;
 
   };
 }

@@ -20,8 +20,8 @@
     hypervisor.enable = true;
 
     super-slicer.enable = true;
-
     nextcloud.enable = true;
+    element.enable = true;
 
   };
 }

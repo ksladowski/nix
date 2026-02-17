@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  config,
   ...
 }:
 {
@@ -50,6 +51,7 @@
             right = [
               {
                 id = "SystemMonitor";
+                showGpuTemp = true;
               }
               {
                 id = "Tray";
@@ -61,21 +63,17 @@
               {
                 id = "Bluetooth";
               }
-              # (lib.mkIf (osConfig.networking.hostName == "ray")
-              {
+              (lib.mkIf config.systemSettings.brightnessctl.enable {
                 id = "Brightness";
-              }
-              # )
+              })
               {
                 id = "Volume";
               }
-              # (lib.mkIf (osConfig.networking.hostName == "ray")
-              {
+              (lib.mkIf config.systemSettings.tlp.enable {
                 id = "Battery";
                 alwaysShowPercentage = false;
                 warningThreshold = 30;
-              }
-              # )
+              })
               {
                 id = "ControlCenter";
                 useDistroLogo = true;
@@ -100,18 +98,10 @@
               enabled = true;
               id = "audio-card";
             }
-            # (lib.mkIf (osConfig.networking.hostName == "ray")
-            {
+            (lib.mkIf config.systemSettings.brightnessctl.enable {
               enabled = true;
               id = "brightness-card";
-            }
-            # )
-            # (lib.mkIf (osConfig.networking.hostName == "rex")
-            {
-              enabled = false;
-              id = "brightness-card";
-            }
-            # )
+            })
             {
               enabled = false;
               id = "weather-card";
@@ -148,7 +138,7 @@
           overviewEnabled = true;
         };
         colorSchemes = {
-          predefinedScheme = "Catppuccin";
+          predefinedScheme = "Gruvbox";
         };
         dock.enabled = false;
       };

@@ -43,10 +43,15 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    jackify = {
-      url = "github:keygenesis/jackify";
+    stylix = {
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # jackify = {
+    #   url = "github:keygenesis/jackify";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
   };
 
