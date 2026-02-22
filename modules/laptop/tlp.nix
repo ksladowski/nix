@@ -3,15 +3,8 @@
   config,
   ...
 }:
-let
-  cfg = config.systemSettings.tlp;
-in
 {
-  options.systemSettings.tlp = {
-    enable = lib.mkEnableOption "Enable tlp";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.systemSettings.laptop.enable {
     services.tlp.enable = true;
   };
 }

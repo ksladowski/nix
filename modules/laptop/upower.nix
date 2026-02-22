@@ -3,15 +3,8 @@
   config,
   ...
 }:
-let
-  cfg = config.systemSettings.upower;
-in
 {
-  options.systemSettings.upower = {
-    enable = lib.mkEnableOption "Enable upower (battery)";
-  };
-
-  config = lib.mkIf cfg.enable {
-    services.upower.enable = true;
+  config = lib.mkIf config.systemSettings.laptop.enable {
+    services.upower.enable = true; # Battery stuff
   };
 }

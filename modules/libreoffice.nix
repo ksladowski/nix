@@ -1,13 +1,20 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
 
-  hm = {
-    home = {
-      packages = with pkgs; [
-        libreoffice-qt
-        hunspell
-        hunspellDicts.en_US
-      ];
+  config = lib.mkIf config.systemSettings.workstation.enable {
+    hm = {
+      home = {
+        packages = with pkgs; [
+          libreoffice-qt
+          hunspell
+          hunspellDicts.en_US
+        ];
+      };
     };
   };
 }

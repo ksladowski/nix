@@ -41,7 +41,7 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    catppuccin.url = "github:catppuccin/nix";
+    pterodactyl.url = "github:PadowYT2/pterodactyl.nix";
 
     stylix = {
       url = "github:nix-community/stylix";
@@ -120,6 +120,18 @@
           modules = recursiveImport [
             ./modules
             ./hosts/rex
+          ];
+        };
+        raven = lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostname = "raven";
+              stateVersion = "25.05";
+            };
+          };
+          modules = recursiveImport [
+            ./modules
+            ./hosts/raven
           ];
         };
       };

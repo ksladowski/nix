@@ -3,15 +3,8 @@
   config,
   ...
 }:
-let
-  cfg = config.systemSettings.keyd;
-in
 {
-  options.systemSettings.keyd = {
-    enable = lib.mkEnableOption "Enable keyd";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.systemSettings.laptop.enable {
     services.keyd = {
       enable = true;
       keyboards = {

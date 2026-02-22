@@ -8,18 +8,15 @@
 
   systemSettings = {
 
+    workstation.enable = true;
+    laptop.enable = true;
+
     bluetooth.enable = true;
     wifi.enable = true;
 
     moonlight.enable = true;
 
-    # Laptop
-    brightnessctl.enable = true;
-    keyd.enable = true;
-    tlp.enable = true;
-    upower.enable = true;
-
-    nextcloud.enable = true;
+    nextcloud-client.enable = true;
     element.enable = true;
 
   };

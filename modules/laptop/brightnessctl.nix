@@ -4,16 +4,8 @@
   config,
   ...
 }:
-let
-  cfg = config.systemSettings.brightnessctl;
-in
 {
-
-  options.systemSettings.brightnessctl = {
-    enable = lib.mkEnableOption "Enable brightnessctl";
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.systemSettings.laptop.enable {
     environment.systemPackages = with pkgs; [ brightnessctl ];
   };
 }

@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.systemSettings.nextcloud;
+  cfg = config.systemSettings.nextcloud-client;
 in
 {
 
-  options.systemSettings.nextcloud = {
+  options.systemSettings.nextcloud-client = {
     enable = lib.mkEnableOption "Enable nextcloud client sync";
   };
 

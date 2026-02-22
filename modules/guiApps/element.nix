@@ -10,7 +10,7 @@ in
 {
 
   options.systemSettings.element = {
-    enable = lib.mkEnableOption "Enable element-desktop";
+    enable = lib.mkEnableOption "Enable element";
   };
 
   config = lib.mkIf cfg.enable {

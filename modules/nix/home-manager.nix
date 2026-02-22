@@ -3,6 +3,7 @@
   inputs,
   baseVars,
   hostVars,
+  config,
   ...
 }:
 

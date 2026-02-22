@@ -8,20 +8,23 @@
 
   systemSettings = {
 
+    workstation.enable = true;
     bluetooth.enable = true;
     amd.enable = true;
 
-    # Gaming
     steam.enable = true;
-    # jackify.enable = true;
     sunshine.enable = true;
 
     wine.enable = true;
     hypervisor.enable = true;
 
+    printing.enable = true;
+    scanning.enable = true;
+
     super-slicer.enable = true;
-    nextcloud.enable = true;
+    nextcloud-client.enable = true;
     element.enable = true;
+    discord.enable = true;
 
   };
 }

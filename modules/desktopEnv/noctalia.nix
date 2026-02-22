@@ -5,142 +5,144 @@
   ...
 }:
 {
-  hm = {
+  config = lib.mkIf config.systemSettings.workstation.enable {
+    hm = {
 
-    imports = [ inputs.noctalia.homeModules.default ];
+      imports = [ inputs.noctalia.homeModules.default ];
 
-    home.persistence."/persist".directories = lib.mkAfter [
-      ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
-    ];
+      home.persistence."/persist".directories = lib.mkAfter [
+        ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
+      ];
 
-    programs.noctalia-shell = {
-      enable = true;
-      systemd.enable = true;
-      settings = {
-        bar = {
-          density = "compact";
-          position = "top";
-          showCapsule = false;
-          widgets = {
-            left = [
+      programs.noctalia-shell = {
+        enable = true;
+        systemd.enable = true;
+        settings = {
+          bar = {
+            density = "compact";
+            position = "top";
+            showCapsule = false;
+            widgets = {
+              left = [
+                {
+                  id = "Workspace";
+                  hideUnoccupied = false;
+                  labelMode = "none";
+                }
+                {
+                  id = "ActiveWindow";
+                  maxWidth = 300;
+                }
+                {
+                  id = "MediaMini";
+                  maxWidth = 300;
+                }
+              ];
+              center = [
+                {
+                  id = "NotificationHistory";
+                  hideWhenZero = true;
+                }
+                {
+                  id = "Clock";
+                  formatHorizontal = "HH:mm ddd, MMM dd";
+                  usePrimaryColor = true;
+                }
+              ];
+              right = [
+                {
+                  id = "SystemMonitor";
+                  showGpuTemp = true;
+                }
+                {
+                  id = "Tray";
+                  drawerEnabled = false;
+                }
+                {
+                  id = "WiFi";
+                }
+                {
+                  id = "Bluetooth";
+                }
+                (lib.mkIf config.systemSettings.laptop.enable {
+                  id = "Brightness";
+                })
+                {
+                  id = "Volume";
+                }
+                (lib.mkIf config.systemSettings.laptop.enable {
+                  id = "Battery";
+                  alwaysShowPercentage = false;
+                  warningThreshold = 30;
+                })
+                {
+                  id = "ControlCenter";
+                  useDistroLogo = true;
+                }
+              ];
+            };
+          };
+          appLauncher = {
+            terminalCommand = "ghostty -e";
+          };
+          controlCenter = {
+            cards = [
               {
-                id = "Workspace";
-                hideUnoccupied = false;
-                labelMode = "none";
+                enabled = true;
+                id = "profile-card";
               }
               {
-                id = "ActiveWindow";
-                maxWidth = 300;
+                enabled = true;
+                id = "shortcuts-card";
               }
               {
-                id = "MediaMini";
-                maxWidth = 300;
+                enabled = true;
+                id = "audio-card";
               }
-            ];
-            center = [
-              {
-                id = "NotificationHistory";
-                hideWhenZero = true;
-              }
-              {
-                id = "Clock";
-                formatHorizontal = "HH:mm ddd, MMM dd";
-                usePrimaryColor = true;
-              }
-            ];
-            right = [
-              {
-                id = "SystemMonitor";
-                showGpuTemp = true;
-              }
-              {
-                id = "Tray";
-                drawerEnabled = false;
-              }
-              {
-                id = "WiFi";
-              }
-              {
-                id = "Bluetooth";
-              }
-              (lib.mkIf config.systemSettings.brightnessctl.enable {
-                id = "Brightness";
+              (lib.mkIf config.systemSettings.laptop.enable {
+                enabled = true;
+                id = "brightness-card";
               })
               {
-                id = "Volume";
+                enabled = false;
+                id = "weather-card";
               }
-              (lib.mkIf config.systemSettings.tlp.enable {
-                id = "Battery";
-                alwaysShowPercentage = false;
-                warningThreshold = 30;
-              })
               {
-                id = "ControlCenter";
-                useDistroLogo = true;
+                enabled = false;
+                id = "media-sysmon-card";
               }
             ];
+            shortcuts = {
+              left = [
+                {
+                  id = "WiFi";
+                }
+                {
+                  id = "Bluetooth";
+                }
+                {
+                  id = "ScreenRecorder";
+                }
+                {
+                  id = "KeepAwake";
+                }
+                {
+                  id = "NightLight";
+                }
+              ];
+              right = [ ];
+            };
           };
-        };
-        appLauncher = {
-          terminalCommand = "ghostty -e";
-        };
-        controlCenter = {
-          cards = [
-            {
-              enabled = true;
-              id = "profile-card";
-            }
-            {
-              enabled = true;
-              id = "shortcuts-card";
-            }
-            {
-              enabled = true;
-              id = "audio-card";
-            }
-            (lib.mkIf config.systemSettings.brightnessctl.enable {
-              enabled = true;
-              id = "brightness-card";
-            })
-            {
-              enabled = false;
-              id = "weather-card";
-            }
-            {
-              enabled = false;
-              id = "media-sysmon-card";
-            }
-          ];
-          shortcuts = {
-            left = [
-              {
-                id = "WiFi";
-              }
-              {
-                id = "Bluetooth";
-              }
-              {
-                id = "ScreenRecorder";
-              }
-              {
-                id = "KeepAwake";
-              }
-              {
-                id = "NightLight";
-              }
-            ];
-            right = [ ];
+          wallpaper = {
+            enabled = true;
+            directory = "~/Pictures/Wallpapers";
+            overviewEnabled = true;
           };
+          colorSchemes = {
+            predefinedScheme = "Gruvbox";
+          };
+          dock.enabled = false;
         };
-        wallpaper = {
-          enabled = true;
-          directory = "~/Pictures/Wallpapers";
-          overviewEnabled = true;
-        };
-        colorSchemes = {
-          predefinedScheme = "Gruvbox";
-        };
-        dock.enabled = false;
       };
     };
   };
