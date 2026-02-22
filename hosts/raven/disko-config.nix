@@ -6,9 +6,9 @@
 
   disko.devices = {
     disk = {
-      nvme1n1 = {
+      sda = {
         type = "disk";
-        device = "/dev/nvme1n1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {

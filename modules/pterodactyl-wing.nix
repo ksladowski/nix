@@ -15,7 +15,7 @@
     { nixpkgs.overlays = [ inputs.pterodactyl.overlays.default ]; }
   ];
 
-  config = lib.mkIf config.systemSettings.pterodactyl-panel.enable {
+  config = lib.mkIf config.systemSettings.pterodactyl-wing.enable {
     services.pterodactyl.wings = {
       enable = true;
       openFirewall = true;

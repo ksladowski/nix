@@ -1,4 +1,9 @@
-{ lib, hostVars, ... }:
+{
+  lib,
+  hostVars,
+  baseVars,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -9,6 +14,7 @@
         "flakes"
       ];
       warn-dirty = false;
+      trusted-users = [ baseVars.username ];
     };
     optimise = {
       automatic = true;
