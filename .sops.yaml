@@ -4,7 +4,7 @@ keys:
   - &host_rex age1cmz3s2chhggv8656fj08zdqtjz3q4cyu5rcy7a4j629zzycak3us7ax3dq
   - &host_raven age1j6cjs3kf26u8n0au6z2npp0hgr6ul0spu3zrz5u4epnqkpm6mezqekt7lu
 creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
+  - path_regex: .*/[^/]*secrets\.(yaml|json)$
     key_groups:
       - age:
         - *admin_kevin

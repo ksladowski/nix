@@ -6,6 +6,7 @@
   ];
 
   systemSettings = {
-    pterodactyl-panel.enable = true;
+    pelican.enable = true;
+    cloudflared.enable = true;
   };
 }

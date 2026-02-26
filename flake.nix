@@ -41,17 +41,13 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    pterodactyl.url = "github:PadowYT2/pterodactyl.nix";
+    # pelican.url = "github:Hythera/nix-pelican";
+    pelican.url = "github:ksladowski/nix-pelican/mail-from-addr-fix";
 
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # jackify = {
-    #   url = "github:keygenesis/jackify";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
   };
 
