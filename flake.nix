@@ -41,8 +41,7 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    # pelican.url = "github:Hythera/nix-pelican";
-    pelican.url = "github:ksladowski/nix-pelican/mail-from-addr-fix";
+    pelican.url = "github:Hythera/nix-pelican";
 
     stylix = {
       url = "github:nix-community/stylix";
