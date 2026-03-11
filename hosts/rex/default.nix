@@ -26,5 +26,12 @@
     element.enable = true;
     discord.enable = true;
 
+    homeManager.enable = true;
+    impermanence.enable = true;
+
+    nfsClient.enable = true;
+    zswap.enable = true;
+    bootloader.enable = true;
+    networkManager.enable = true;
   };
 }
