@@ -6,15 +6,16 @@
   ...
 }:
 let
-  cfg = config.systemSettings.nextcloud-client;
+  nextcloudClient = config.systemSettings.nextcloudClient.enable;
+  homeManager = config.systemSettings.homeManager.enable;
 in
 {
 
-  options.systemSettings.nextcloud-client = {
+  options.systemSettings.nextcloudClient = {
     enable = lib.mkEnableOption "Enable nextcloud client sync";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf nextcloudClient {
 
     sops.secrets."nextcloud/password" = {
       owner = "${baseVars.username}";
@@ -29,7 +30,7 @@ in
       mode = "0400";
     };
 
-    hm = {
+    hm = lib.mkIf homeManager {
       home.packages = with pkgs; [ nextcloud-client ];
       systemd.user = {
         services.nextcloud-autosync = {

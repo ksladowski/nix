@@ -5,14 +5,15 @@
   ...
 }:
 let
-  cfg = config.systemSettings.bluetooth;
+  bluetooth = config.systemSettings.bluetooth.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
   options.systemSettings.bluetooth = {
     enable = lib.mkEnableOption "Enable bluetooth";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf bluetooth {
 
     hardware.bluetooth = {
       enable = true;
@@ -20,7 +21,7 @@ in
 
     users.groups.bluetooth.members = [ baseVars.username ];
 
-    persist = {
+    persist = lib.mkIf impermanence {
       directories = [
         "/var/lib/bluetooth"
       ];

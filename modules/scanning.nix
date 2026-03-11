@@ -5,21 +5,27 @@
   baseVars,
   ...
 }:
+let
+  scanning = config.systemSettings.scanning.enable;
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+in
 {
 
   options.systemSettings.scanning = {
     enable = lib.mkEnableOption "Enable SANE";
   };
 
-  config = lib.mkIf config.systemSettings.scanning.enable {
+  config = lib.mkIf scanning {
     hardware.sane.enable = true;
 
     users.groups.scanner.members = [ baseVars.username ];
     users.groups.lp.members = [ baseVars.username ];
 
-    # TODO make this part conditional on workstation
-    hm.home.packages = with pkgs; [
-      simple-scan
-    ];
+    hm = lib.mkIf (homeManager && workstation) {
+      home.packages = with pkgs; [
+        simple-scan
+      ];
+    };
   };
 }

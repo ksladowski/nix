@@ -4,8 +4,11 @@
   baseVars,
   ...
 }:
+let
+  workstation = config.systemSettings.workstation.enable;
+in
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
+  config = lib.mkIf workstation {
     services.greetd = {
       enable = true;
       settings = {

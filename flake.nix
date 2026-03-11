@@ -48,6 +48,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
   };
 
   outputs =
@@ -127,6 +129,18 @@
           modules = recursiveImport [
             ./modules
             ./hosts/raven
+          ];
+        };
+        nix-wsl = lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostname = "nix-wsl";
+              stateVersion = "25.05";
+            };
+          };
+          modules = recursiveImport [
+            ./modules
+            ./hosts/nix-wsl
           ];
         };
       };

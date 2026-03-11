@@ -4,15 +4,16 @@
   config,
   ...
 }:
+let
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
+in
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
-    hm = {
+  config = lib.mkIf workstation {
+    hm = lib.mkIf homeManager {
 
       imports = [ inputs.noctalia.homeModules.default ];
-
-      home.persistence."/persist".directories = lib.mkAfter [
-        ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
-      ];
 
       programs.noctalia-shell = {
         enable = true;
@@ -144,6 +145,13 @@
           dock.enabled = false;
         };
       };
+    };
+
+    hm-persist = lib.mkIf (homeManager && impermanence) {
+      directories = [
+        ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
+      ];
+
     };
   };
 }

@@ -6,12 +6,13 @@
 }:
 let
   shellAliases = {
-
     o = "xdg-open";
   };
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
+  config = lib.mkIf workstation {
     programs.fish.enable = true;
     environment.shells = with pkgs; [ fish ];
 
@@ -25,26 +26,28 @@ in
       '';
     };
 
-    hm.programs.fish = {
-      inherit shellAliases;
-      enable = true;
-      interactiveShellInit = ''
-        			set fish_greeting # Disable greeting
-        			'';
-      plugins = [
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-        {
-          name = "pure";
-          src = pkgs.fishPlugins.pure.src;
-        }
-        {
-          name = "done";
-          src = pkgs.fishPlugins.done.src;
-        }
-      ];
+    hm = lib.mkIf homeManager {
+      programs.fish = {
+        inherit shellAliases;
+        enable = true;
+        interactiveShellInit = ''
+          			set fish_greeting # Disable greeting
+          			'';
+        plugins = [
+          {
+            name = "grc";
+            src = pkgs.fishPlugins.grc.src;
+          }
+          {
+            name = "pure";
+            src = pkgs.fishPlugins.pure.src;
+          }
+          {
+            name = "done";
+            src = pkgs.fishPlugins.done.src;
+          }
+        ];
+      };
     };
   };
 }

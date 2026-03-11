@@ -10,23 +10,24 @@ let
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
+
+  options.systemSettings.remmina = {
+    enable = lib.mkEnableOption "Enable remmina";
+  };
+
   config = lib.mkIf workstation {
 
     hm = lib.mkIf homeManager {
-      home = {
-        packages = with pkgs; [
-          bitwarden-desktop
-          bitwarden-cli
-        ];
-
-        sessionVariables.SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
-      };
-
+      home.packages = with pkgs; [
+        remmina
+      ];
     };
 
     hm-persist = lib.mkIf (homeManager && impermanence) {
       directories = [
-        ".config/Bitwarden"
+        ".cache/remmina"
+        ".config/remmina"
+        ".local/share/remmina"
       ];
     };
   };

@@ -5,6 +5,10 @@
   lib,
   ...
 }:
+let
+  pelican = config.systemSettings.pelican.enable;
+  impermanence = config.systemSettings.impermanence.enable;
+in
 {
 
   options.systemSettings.pelican = {
@@ -16,7 +20,7 @@
     { nixpkgs.overlays = [ inputs.pelican.overlays.default ]; }
   ];
 
-  config = lib.mkIf config.systemSettings.pelican.enable {
+  config = lib.mkIf pelican {
 
     sops.secrets."pelican/key" = {
       owner = "pelican-panel";
@@ -80,7 +84,7 @@
       ];
     };
 
-    persist = {
+    persist = lib.mkIf impermanence {
       directories = [
         "/var/lib/docker"
         "/var/lib/mysql"

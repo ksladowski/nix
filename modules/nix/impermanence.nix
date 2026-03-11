@@ -38,61 +38,69 @@ let
     + ".device";
 
   phase1Systemd = config.boot.initrd.systemd.enable;
+
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
-  boot.initrd = {
-    supportedFilesystems = [ "btrfs" ];
-    postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
-    systemd.services.restore-root = lib.mkIf phase1Systemd {
-      description = "Rollback btrfs rootfs";
-      wantedBy = [ "initrd.target" ];
-      requires = [ (toSystemdDevice root.device) ];
-      after = [ (toSystemdDevice root.device) ];
-      before = [ "sysroot.mount" ];
-      unitConfig.DefaultDependencies = "no";
-      serviceConfig.Type = "oneshot";
-      script = wipeScript;
-    };
+  options.systemSettings.impermanence = {
+    enable = lib.mkEnableOption "Enable impermanence";
   };
 
   imports = [
     inputs.impermanence.nixosModules.impermanence
-
     (lib.mkAliasOptionModule [ "persist" ] [ "environment" "persistence" "/persist" ])
     (lib.mkAliasOptionModule [ "hm-persist" ] [ "hm" "home" "persistence" "/persist" ])
   ];
 
-  fileSystems."/persist".neededForBoot = true;
+  config = lib.mkIf impermanence {
+    boot.initrd = {
+      supportedFilesystems = [ "btrfs" ];
+      postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
+      systemd.services.restore-root = lib.mkIf phase1Systemd {
+        description = "Rollback btrfs rootfs";
+        wantedBy = [ "initrd.target" ];
+        requires = [ (toSystemdDevice root.device) ];
+        after = [ (toSystemdDevice root.device) ];
+        before = [ "sysroot.mount" ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = wipeScript;
+      };
+    };
 
-  programs.fuse.userAllowOther = true;
-  systemd.tmpfiles.rules = [
-    "d /persist/home/kevin 0700 kevin users"
-  ];
+    fileSystems."/persist".neededForBoot = true;
 
-  persist = {
-    directories = [
-      "/var/log"
-      "/var/lib/nixos"
+    programs.fuse.userAllowOther = true;
+    systemd.tmpfiles.rules = [
+      "d /persist/home/kevin 0700 kevin users"
     ];
 
-    files = [
-      "/etc/machine-id"
+    persist = {
+      directories = [
+        "/var/log"
+        "/var/lib/nixos"
+      ];
 
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-    ];
-  };
+      files = [
+        "/etc/machine-id"
 
-  hm-persist = {
-    directories = [
-      "Documents"
-      "Downloads"
-      "Pictures"
-      "Games" # TODO make conditional?
-      "src"
-      ".ssh"
-    ];
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+        "/etc/ssh/ssh_host_rsa_key"
+        "/etc/ssh/ssh_host_rsa_key.pub"
+      ];
+    };
+
+    hm-persist = lib.mkIf homeManager {
+      directories = [
+        "Documents"
+        "Downloads"
+        "Pictures"
+        "Games" # TODO make conditional?
+        "src"
+        ".ssh"
+      ];
+    };
   };
 }

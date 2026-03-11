@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = config.systemSettings.amd;
+  amd = config.systemSettings.amd.enable;
 in
 {
 
@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "Enable AMD Graphics";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf amd {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

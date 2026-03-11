@@ -5,15 +5,16 @@
   ...
 }:
 let
-  cfg = config.systemSettings.steam;
+  steam = config.systemSettings.steam.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
-
   options.systemSettings.steam = {
     enable = lib.mkEnableOption "Enable steam";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf steam {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -34,8 +35,11 @@ in
       vkd3d-proton
     ];
 
-    hm-persist.directories = lib.mkAfter [
-      ".local/share/Steam"
-    ];
+    hm-persist = lib.mkIf (homeManager && impermanence) {
+      directories = [
+        ".local/share/Steam"
+      ];
+
+    };
   };
 }

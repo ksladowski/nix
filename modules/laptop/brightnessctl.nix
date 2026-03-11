@@ -4,8 +4,11 @@
   config,
   ...
 }:
+let
+  laptop = config.systemSettings.laptop.enable;
+in
 {
-  config = lib.mkIf config.systemSettings.laptop.enable {
+  config = lib.mkIf laptop {
     environment.systemPackages = with pkgs; [ brightnessctl ];
   };
 }

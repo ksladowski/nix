@@ -4,10 +4,14 @@
   config,
   ...
 }:
+let
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
+in
 {
-
-  config = lib.mkIf config.systemSettings.workstation.enable {
-    hm = {
+  config = lib.mkIf workstation {
+    hm = lib.mkIf homeManager {
       home = {
         packages = with pkgs; [
           tree-sitter
@@ -17,14 +21,8 @@
           lua5_1
           nil
           nixfmt
-          markdown-oxide
         ];
 
-        persistence."/persist".directories = lib.mkAfter [
-          ".local/share/nvim"
-          ".local/state/nvim"
-          ".cache/nvim"
-        ];
       };
 
       programs.neovim = {
@@ -40,6 +38,14 @@
       };
 
       stylix.targets.neovim.enable = false;
+    };
+
+    hm-persist = lib.mkIf (homeManager && impermanence) {
+      directories = [
+        ".local/share/nvim"
+        ".local/state/nvim"
+        ".cache/nvim"
+      ];
     };
   };
 }

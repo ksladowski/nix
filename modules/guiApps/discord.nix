@@ -4,19 +4,20 @@
   config,
   ...
 }:
+let
+  discord = config.systemSettings.discord.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
+in
 {
   options.systemSettings.discord = {
     enable = lib.mkEnableOption "Enable discord";
   };
 
-  config = lib.mkIf config.systemSettings.discord.enable {
-    hm = {
+  config = lib.mkIf discord {
+    hm = lib.mkIf homeManager {
       imports = [
         inputs.nixcord.homeModules.nixcord
-      ];
-
-      home.persistence."/persist".directories = lib.mkAfter [
-        ".config/vesktop"
       ];
 
       programs.nixcord = {
@@ -43,6 +44,12 @@
           volumeBooster.enable = true;
         };
       };
+    };
+
+    hm-persist = lib.mkIf impermanence {
+      directories = [
+        ".config/vesktop"
+      ];
     };
   };
 }

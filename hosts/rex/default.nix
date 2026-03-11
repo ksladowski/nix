@@ -21,7 +21,7 @@
     printing.enable = true;
     scanning.enable = true;
 
-    super-slicer.enable = true;
+    superSlicer.enable = true;
     nextcloud-client.enable = true;
     element.enable = true;
     discord.enable = true;

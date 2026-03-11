@@ -5,13 +5,16 @@
   config,
   ...
 }:
+let
+  printing = config.systemSettings.printing.enable;
+in
 {
 
   options.systemSettings.printing = {
     enable = lib.mkEnableOption "Enable CUPS";
   };
 
-  config = lib.mkIf config.systemSettings.printing.enable {
+  config = lib.mkIf printing {
     services.printing = {
       enable = true;
       drivers = [

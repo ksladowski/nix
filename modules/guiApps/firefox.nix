@@ -5,9 +5,14 @@
   config,
   ...
 }:
+let
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
+in
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
-    hm = {
+  config = lib.mkIf workstation {
+    hm = lib.mkIf homeManager {
 
       ## Currently on a fresh install, this opens all the "first run" tabs for any installed extensions, the sidebar button doesn't appear until the second launch, and the first time you close with tabs open, ff will prompt for you to restore them on next launch. I just open and close ff 2-3 times and it gets all this out of the system
       programs.firefox = {
@@ -151,14 +156,16 @@
         };
       };
 
-      home.persistence."/persist".directories = lib.mkAfter [
-        ".mozilla"
-      ];
-
       stylix.targets.firefox = {
         profileNames = [ "default" ];
         colorTheme.enable = true;
       };
+    };
+
+    hm-persist = lib.mkIf (homeManager && impermanence) {
+      directories = [
+        ".mozilla"
+      ];
     };
   };
 }

@@ -6,14 +6,14 @@
 }:
 
 let
-  cfg = config.systemSettings.wine;
+  wine = config.systemSettings.wine.enable;
 in
 {
   options.systemSettings.wine = {
     enable = lib.mkEnableOption "Enable wine";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf wine {
     environment.systemPackages = with pkgs; [
       # ...
 

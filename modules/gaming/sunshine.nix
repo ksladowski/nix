@@ -1,32 +1,29 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
 
 let
-  cfg = config.systemSettings.sunshine;
+  sunshine = config.systemSettings.sunshine.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
   options.systemSettings.sunshine = with lib; {
     enable = mkEnableOption "sunshine";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf sunshine {
     services.sunshine = {
       enable = true;
       openFirewall = true;
-      # TODO remove this once PR is merged into nixpkgs-unstable
-      # https://nixpk.gs/pr-tracker.html?pr=493384
-      package = pkgs.sunshine.override {
-        boost = pkgs.boost187;
-      };
     };
-    hm-persist.directories = [
-      ".config/sunshine"
-    ];
 
+    hm-persist = lib.mkIf (homeManager && impermanence) {
+      directories = [
+        ".config/sunshine"
+      ];
+    };
   };
-
 }

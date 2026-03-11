@@ -5,7 +5,9 @@
   ...
 }:
 let
-  cfg = config.systemSettings.element;
+  element = config.systemSettings.element.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
 
@@ -13,15 +15,15 @@ in
     enable = lib.mkEnableOption "Enable element";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf element {
 
-    hm = {
+    hm = lib.mkIf homeManager {
       home.packages = with pkgs; [
         element-desktop
       ];
     };
 
-    hm-persist = {
+    hm-persist = lib.mkIf (homeManager && impermanence) {
       directories = [
         ".config/Element"
       ];

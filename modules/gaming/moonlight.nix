@@ -4,27 +4,29 @@
   pkgs,
   ...
 }:
-
 let
-  cfg = config.systemSettings.moonlight;
+  moonlight = config.systemSettings.moonlight.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
   options.systemSettings.moonlight = with lib; {
     enable = mkEnableOption "moonlight";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf moonlight {
 
-    hm = {
+    hm = lib.mkIf homeManager {
       home.packages = with pkgs; [
         moonlight-qt
       ];
     };
 
-    hm-persist.files = [
-      ".config/Moonlight Game Streaming Project/Moonlight.conf"
-    ];
-
+    hm-persist = lib.mkIf impermanence {
+      files = [
+        ".config/Moonlight Game Streaming Project/Moonlight.conf"
+      ];
+    };
   };
 
 }

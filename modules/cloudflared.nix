@@ -4,13 +4,16 @@
   pkgs,
   ...
 }:
+let
+  cloudflared = config.systemSettings.cloudflared.enable;
+in
 {
 
   options.systemSettings.cloudflared = {
     enable = lib.mkEnableOption "Enable cloudflare tunnel";
   };
 
-  config = lib.mkIf config.systemSettings.cloudflared.enable {
+  config = lib.mkIf cloudflared {
 
     sops.secrets."cloudflared/tunnel-id" = {
       owner = "cloudflared";

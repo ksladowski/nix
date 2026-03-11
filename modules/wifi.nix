@@ -4,14 +4,14 @@
   ...
 }:
 let
-  cfg = config.systemSettings.wifi;
+  wifi = config.systemSettings.wifi.enable;
 in
 {
   options.systemSettings.wifi = {
     enable = lib.mkEnableOption "Enable wifi with home profiles";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf wifi {
 
     sops.secrets."wifi/home/ssid" = { };
     sops.secrets."wifi/home/psk" = { };

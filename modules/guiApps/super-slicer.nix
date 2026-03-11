@@ -5,17 +5,19 @@
   ...
 }:
 let
-  cfg = config.systemSettings.super-slicer;
+  superSlicer = config.systemSettings.superSlicer.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+  impermanence = config.systemSettings.impermanence.enable;
 in
 {
 
-  options.systemSettings.super-slicer = {
-    enable = lib.mkEnableOption "Enable super-slicer";
+  options.systemSettings.superSlicer = {
+    enable = lib.mkEnableOption "Enable super slicer";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf superSlicer {
 
-    hm = {
+    hm = lib.mkIf homeManager {
       home.packages = with pkgs; [
         super-slicer-latest
       ];

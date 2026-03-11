@@ -5,11 +5,14 @@
   lib,
   ...
 }:
+let
+  workstation = config.systemSettings.workstation.enable;
+in
 {
   imports = [
     inputs.stylix.nixosModules.stylix
   ];
-  config = lib.mkIf config.systemSettings.workstation.enable {
+  config = lib.mkIf workstation {
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";

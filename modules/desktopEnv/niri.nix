@@ -5,9 +5,12 @@
   lib,
   ...
 }:
-
+let
+  workstation = config.systemSettings.workstation.enable;
+  homeManager = config.systemSettings.homeManager.enable;
+in
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
+  config = lib.mkIf workstation {
     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
     environment.systemPackages = with pkgs; [ xwayland-satellite ];
@@ -16,7 +19,7 @@
     security.soteria.enable = true;
     security.pam.services.swaylock = { };
 
-    hm = {
+    hm = lib.mkIf homeManager {
 
       imports = [
         inputs.niri.homeModules.niri

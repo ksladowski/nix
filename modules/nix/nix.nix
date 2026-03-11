@@ -2,8 +2,12 @@
   lib,
   hostVars,
   baseVars,
+  config,
   ...
 }:
+let
+  homeManager = config.systemSettings.homeManager.enable;
+in
 {
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -27,12 +31,14 @@
     };
   };
 
-  hm.home = {
-    shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
-      ncd = "cd ~/src/nix";
-      nfu = "nix flake update --flake ~/src/nix";
-      nds = "nix develop --flake ~/src/nix";
+  hm = lib.mkIf homeManager {
+    home = {
+      shellAliases = {
+        nrs = "sudo nixos-rebuild switch --flake ~/src/nix";
+        ncd = "cd ~/src/nix";
+        nfu = "nix flake update --flake ~/src/nix";
+        nds = "nix develop --flake ~/src/nix";
+      };
     };
   };
 
