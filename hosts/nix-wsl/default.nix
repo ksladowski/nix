@@ -8,7 +8,7 @@
 
   systemSettings = {
     homeManager.enable = true;
-    workstation.enable = true;
+    shellEnvironment.enable = true;
   };
 
   wsl = {

@@ -25,6 +25,7 @@
     nextcloud-client.enable = true;
     element.enable = true;
     discord.enable = true;
+    firefox.enable = true;
 
     homeManager.enable = true;
     impermanence.enable = true;

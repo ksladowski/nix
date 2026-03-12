@@ -11,6 +11,11 @@ let
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
+
+  options.systemSettings.firefox = {
+    enable = lib.mkEnableOption "Enable firefox";
+  };
+
   config = lib.mkIf firefox {
     hm = lib.mkIf homeManager {
 

@@ -23,6 +23,7 @@
     nextcloudClient.enable = true;
     element.enable = true;
     discord.enable = true;
+    firefox.enable = true;
 
     scanning.enable = true;
     printing.enable = true;
