@@ -15,6 +15,7 @@ in
   config = lib.mkIf desktopEnv {
     stylix = {
       enable = true;
+      targets.neovim.enable = false; # this is the only one i am disabling
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       fonts = {
         serif = config.stylix.fonts.sansSerif;

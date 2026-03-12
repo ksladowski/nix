@@ -36,8 +36,6 @@ in
         source = config.hm.lib.file.mkOutOfStoreSymlink "${config.hm.home.homeDirectory}/src/nvim";
         recursive = true;
       };
-
-      stylix.targets.neovim.enable = false;
     };
 
     hm-persist = lib.mkIf (homeManager && impermanence) {
