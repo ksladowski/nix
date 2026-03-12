@@ -10,6 +10,11 @@ let
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
+
+  options.systemSettings.bitwarden = {
+    enable = lib.mkEnableOption "Enable bitwarden";
+  };
+
   config = lib.mkIf bitwarden {
 
     hm = lib.mkIf homeManager {

@@ -26,6 +26,7 @@
     element.enable = true;
     discord.enable = true;
     firefox.enable = true;
+    bitwarden.enable = true;
 
     homeManager.enable = true;
     impermanence.enable = true;

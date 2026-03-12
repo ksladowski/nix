@@ -24,6 +24,7 @@
     element.enable = true;
     discord.enable = true;
     firefox.enable = true;
+    bitwarden.enable = true;
 
     scanning.enable = true;
     printing.enable = true;
