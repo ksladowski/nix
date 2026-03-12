@@ -9,6 +9,11 @@ let
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
+
+  options.systemSettings.libreoffice = {
+    enable = lib.mkEnableOption "Enable libreoffice";
+  };
+
   config = lib.mkIf libreoffice {
     hm = lib.mkIf homeManager {
       home = {
