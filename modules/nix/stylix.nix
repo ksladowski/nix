@@ -7,6 +7,7 @@
 }:
 let
   desktopEnv = config.systemSettings.desktopEnv.enable;
+  homeManager = config.systemSettings.homeManager.enable;
 in
 {
   imports = [
@@ -15,7 +16,6 @@ in
   config = lib.mkIf desktopEnv {
     stylix = {
       enable = true;
-      targets.neovim.enable = false; # this is the only one i am disabling
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       fonts = {
         serif = config.stylix.fonts.sansSerif;
@@ -33,6 +33,9 @@ in
         package = pkgs.everforest-cursors;
         size = 24;
       };
+    };
+    hm = lib.mkIf {
+      stylix.targets.neovim.enable = false;
     };
   };
 }
