@@ -5,10 +5,10 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  desktopEnv = config.systemSettings.desktopEnv.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf desktopEnv {
     services.greetd = {
       enable = true;
       settings = {

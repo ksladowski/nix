@@ -11,7 +11,7 @@
     homeManager.enable = true;
     impermanence.enable = true;
 
-    workstation.enable = true;
+    shellEnvironment.enable = true;
     laptop.enable = true;
 
     bluetooth.enable = true;

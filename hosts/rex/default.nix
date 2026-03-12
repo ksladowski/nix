@@ -8,7 +8,7 @@
 
   systemSettings = {
 
-    workstation.enable = true;
+    shellEnvironment.enable = true;
     bluetooth.enable = true;
     amd.enable = true;
 

@@ -5,11 +5,11 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  libreoffice = config.systemSettings.libreoffice.enable;
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf libreoffice {
     hm = lib.mkIf homeManager {
       home = {
         packages = with pkgs; [

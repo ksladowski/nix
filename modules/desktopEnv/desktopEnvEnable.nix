@@ -3,7 +3,7 @@
   ...
 }:
 {
-  options.systemSettings.workstation = {
+  options.systemSettings.desktopEnv = {
     enable = lib.mkEnableOption "Enable desktop environment";
   };
 }

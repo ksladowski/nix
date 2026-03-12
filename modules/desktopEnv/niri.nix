@@ -6,11 +6,11 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  desktopEnv = config.systemSettings.desktopEnv.enable;
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf desktopEnv {
     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
     environment.systemPackages = with pkgs; [ xwayland-satellite ];

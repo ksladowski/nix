@@ -6,13 +6,13 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  desktopEnv = config.systemSettings.desktopEnv.enable;
 in
 {
   imports = [
     inputs.stylix.nixosModules.stylix
   ];
-  config = lib.mkIf workstation {
+  config = lib.mkIf desktopEnv {
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";

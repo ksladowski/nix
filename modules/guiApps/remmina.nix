@@ -5,7 +5,7 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  remmina = config.systemSettings.remmina.enable;
   homeManager = config.systemSettings.homeManager.enable;
   impermanence = config.systemSettings.impermanence.enable;
 in
@@ -15,7 +15,7 @@ in
     enable = lib.mkEnableOption "Enable remmina";
   };
 
-  config = lib.mkIf workstation {
+  config = lib.mkIf remmina {
 
     hm = lib.mkIf homeManager {
       home.packages = with pkgs; [

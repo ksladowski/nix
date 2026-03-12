@@ -8,11 +8,11 @@ let
   shellAliases = {
     o = "xdg-open";
   };
-  workstation = config.systemSettings.workstation.enable;
+  shellEnvironment = config.systemSettings.shellEnvironment.enable;
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf shellEnvironment {
     programs.fish.enable = true;
     environment.shells = with pkgs; [ fish ];
 

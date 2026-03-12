@@ -8,11 +8,12 @@
 
   systemSettings = {
     homeManager.enable = true;
+    workstation.enable = true;
   };
 
   wsl = {
     enable = true;
-    conf = {
+    wslConf = {
       automount = {
         enabled = true;
         mountFsTab = true;

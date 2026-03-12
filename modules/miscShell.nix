@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.systemSettings.workstation.enable {
+  config = lib.mkIf config.systemSettings.shellEnvironment.enable {
     hm = {
 
       home = {

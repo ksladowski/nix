@@ -5,12 +5,12 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  bitwarden = config.systemSettings.bitwarden.enable;
   homeManager = config.systemSettings.homeManager.enable;
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf bitwarden {
 
     hm = lib.mkIf homeManager {
       home = {

@@ -7,7 +7,7 @@
 }:
 let
   scanning = config.systemSettings.scanning.enable;
-  workstation = config.systemSettings.workstation.enable;
+  simpleScan = config.systemSettings.simpleScan.enable;
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
@@ -22,7 +22,7 @@ in
     users.groups.scanner.members = [ baseVars.username ];
     users.groups.lp.members = [ baseVars.username ];
 
-    hm = lib.mkIf (homeManager && workstation) {
+    hm = lib.mkIf (homeManager && simpleScan) {
       home.packages = with pkgs; [
         simple-scan
       ];

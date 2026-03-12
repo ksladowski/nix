@@ -4,11 +4,11 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  desktopEnv = config.systemSettings.desktopEnv.enable;
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf desktopEnv {
     hm = lib.mkIf homeManager {
       services.swayidle.enable = true;
     };

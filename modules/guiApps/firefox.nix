@@ -6,12 +6,12 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  firefox = config.systemSettings.firefox.enable;
   homeManager = config.systemSettings.homeManager.enable;
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf firefox {
     hm = lib.mkIf homeManager {
 
       ## Currently on a fresh install, this opens all the "first run" tabs for any installed extensions, the sidebar button doesn't appear until the second launch, and the first time you close with tabs open, ff will prompt for you to restore them on next launch. I just open and close ff 2-3 times and it gets all this out of the system

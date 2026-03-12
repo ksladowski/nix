@@ -5,12 +5,12 @@
   ...
 }:
 let
-  workstation = config.systemSettings.workstation.enable;
+  shellEnvironment = config.systemSettings.shellEnvironment.enable;
   homeManager = config.systemSettings.homeManager.enable;
   impermanence = config.systemSettings.impermanence.enable;
 in
 {
-  config = lib.mkIf workstation {
+  config = lib.mkIf shellEnvironment {
     hm = lib.mkIf homeManager {
       home = {
         packages = with pkgs; [
