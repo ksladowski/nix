@@ -43,10 +43,7 @@
 
     pelican.url = "github:Hythera/nix-pelican";
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 

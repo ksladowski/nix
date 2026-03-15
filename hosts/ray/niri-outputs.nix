@@ -5,9 +5,10 @@
 }:
 let
   homeManager = config.systemSettings.homeManager.enable;
+  desktopEnv = config.systemSettings.desktopEnv.enable;
 in
 {
-  config = lib.mkIf homeManager {
+  config = lib.mkIf (desktopEnv && homeManager) {
     hm.programs.niri.settings.outputs = {
       "Chimei Innolux Corporation 0x1618 Unknown" = {
         enable = true;

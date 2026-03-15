@@ -11,6 +11,7 @@
     homeManager.enable = true;
     impermanence.enable = true;
 
+    desktopEnv.enable = true;
     shellEnvironment.enable = true;
     laptop.enable = true;
 
@@ -25,6 +26,7 @@
     discord.enable = true;
     firefox.enable = true;
     bitwarden.enable = true;
+    remmina.enable = true;
 
     scanning.enable = true;
     printing.enable = true;

@@ -50,22 +50,22 @@ in
 
           layout = {
             border.enable = false;
+            # TODO these are hardcoded and probably shouldn't be. Use nix-colors (or stylix if it has the option) and import the palette
             focus-ring = {
               enable = true;
               active = {
-                color = config.lib.stylix.colors.base0D;
+                color = "#cba6f7";
               };
               inactive = {
-                color = config.lib.stylix.colors.base08;
+                color = "#7f849c";
               };
             };
             shadow = {
               enable = true;
-              color = config.lib.stylix.colors.base00;
+              color = "#0007";
             };
             default-column-width.proportion = 0.5;
           };
-
           hotkey-overlay.skip-at-startup = true;
 
           prefer-no-csd = true;

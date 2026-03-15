@@ -161,10 +161,6 @@ in
         };
       };
 
-      stylix.targets.firefox = {
-        profileNames = [ "default" ];
-        colorTheme.enable = true;
-      };
     };
 
     hm-persist = lib.mkIf (homeManager && impermanence) {

@@ -140,7 +140,7 @@ in
             overviewEnabled = true;
           };
           colorSchemes = {
-            predefinedScheme = "Gruvbox";
+            predefinedScheme = "Catppuccin";
           };
           dock.enabled = false;
         };

@@ -16,6 +16,10 @@ in
     enable = lib.mkEnableOption "Enable SANE";
   };
 
+  options.systemSettings.simpleScan = {
+    enable = lib.mkEnableOption "Enable simple-scan GUI for scanners";
+  };
+
   config = lib.mkIf scanning {
     hardware.sane.enable = true;
 

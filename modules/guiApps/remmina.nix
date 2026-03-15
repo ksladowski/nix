@@ -16,10 +16,9 @@ in
   };
 
   config = lib.mkIf remmina {
-
     hm = lib.mkIf homeManager {
-      home.packages = with pkgs; [
-        remmina
+      home.packages = [
+        pkgs.remmina
       ];
     };
 
