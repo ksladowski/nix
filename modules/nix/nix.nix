@@ -3,13 +3,20 @@
   hostVars,
   baseVars,
   config,
+  inputs,
   ...
 }:
 let
   homeManager = config.systemSettings.homeManager.enable;
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      (import ../../overlays/roslyn-ls.nix)
+      inputs.neovim-nightly-overlay.overlays.default
+    ];
+  };
   nix = {
     settings = {
       auto-optimise-store = lib.mkDefault true;

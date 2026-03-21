@@ -45,8 +45,7 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -90,7 +89,6 @@
         in
         builtins.listToAttrs (map makeAttr files)
       );
-
       nixosConfigurations = {
         ray = lib.nixosSystem {
           specialArgs = specialArgs // {
@@ -126,18 +124,6 @@
           modules = recursiveImport [
             ./modules
             ./hosts/raven
-          ];
-        };
-        nix-wsl = lib.nixosSystem {
-          specialArgs = specialArgs // {
-            hostVars = {
-              hostname = "nix-wsl";
-              stateVersion = "25.05";
-            };
-          };
-          modules = recursiveImport [
-            ./modules
-            ./hosts/nix-wsl
           ];
         };
       };

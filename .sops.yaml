@@ -3,6 +3,7 @@ keys:
   - &host_ray age1udsnzrehdy2hzgsvqu3je7uq9t0cue27slusps7r04l3gc7dk5fqcug5zq
   - &host_rex age1cmz3s2chhggv8656fj08zdqtjz3q4cyu5rcy7a4j629zzycak3us7ax3dq
   - &host_raven age1j6cjs3kf26u8n0au6z2npp0hgr6ul0spu3zrz5u4epnqkpm6mezqekt7lu
+  - &host_nix-wsl age10zt6vvnrprqm5wx4g8y2tdw055upwkk8rulmpfqv45qvh3gjm3gsf55v20
 creation_rules:
   - path_regex: .*/[^/]*secrets\.(yaml|json)$
     key_groups:
@@ -11,3 +12,4 @@ creation_rules:
         - *host_ray
         - *host_rex
         - *host_raven
+        - *host_nix-wsl

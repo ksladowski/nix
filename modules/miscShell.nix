@@ -13,6 +13,7 @@
           grc
           fd
           more
+          unzip
         ];
       };
 

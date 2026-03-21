@@ -34,5 +34,8 @@
     nfsClient.enable = true;
     zswap.enable = true;
     bootloader.enable = true;
+
+    podman.enable = true;
+
   };
 }
