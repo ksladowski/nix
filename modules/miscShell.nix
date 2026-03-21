@@ -14,6 +14,7 @@
           fd
           more
           unzip
+          wget
         ];
       };
 

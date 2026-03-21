@@ -6,6 +6,9 @@ in
 {
   config = lib.mkIf desktopEnv {
     hm = lib.mkIf homeManager {
+
+      home.file.".config/ghostty/shaders".source = ../config/ghostty/shaders;
+
       programs.ghostty = {
         enable = true;
         settings = {
@@ -14,6 +17,7 @@ in
           window-padding-y = 4;
           window-padding-balance = true;
           link-previews = false;
+          custom-shader = "~/.config/ghostty/shaders/cursor_warp.glsl";
         };
         enableFishIntegration = true;
       };

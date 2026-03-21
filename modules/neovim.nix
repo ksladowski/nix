@@ -20,9 +20,7 @@ in
         vimAlias = true;
         defaultEditor = true;
         withNodeJs = true;
-        withRuby = true;
         withPython3 = true;
-        withPerl = true;
         vimdiffAlias = true;
         extraPackages = with pkgs; [
           mermaid-cli # mermaid preview
@@ -30,35 +28,18 @@ in
           inotify-tools # better file watching
           luarocks
           lua5_1
+          lua51Packages.jsregexp # for luasnip
 
           #-- lua
-          lua-language-server # LSP
-          stylua # formatter
-
-          #-- python
-          python3Packages.debugpy
-          pyright # LSP
-          ty # LSP
-          ruff # linter & formatter via LSP
+          lua-language-server
+          stylua
 
           #-- nix
-          nixfmt # formatter
-          nixd # LSP
-
-          #-- bash
-          bash-language-server # LSP
-          shfmt # formatter (bashls calls this)
-          shellcheck # linter (bashls calls this)
-
-          #-- XML
-          lemminx # LSP
-
-          #-- HTML
-          superhtml # LSP
+          nixfmt
+          nixd
 
           #-- markdown
           marksman # LSP
-          markdownlint-cli2 # linter, formatter
 
           #-- YAML
           yaml-language-server
@@ -69,37 +50,39 @@ in
           sqlfluff
         ];
         plugins = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (grammars: with grammars; [ 
-            bash
-            c_sharp
-            css
-            csv
-            diff
-            dockerfile
-            git_config
-            git_rebase
-            gitattributes
-            gitcommit
-            gitignore
-            html
-            http
-            javascript
-            json
-            lua
-            luadoc
-            markdown
-            markdown_inline
-            mermaid
-            nix
-            python
-            razor
-            regex
-            sql
-            ssh_config
-            typescript
-            xml
-            yaml
-          ]))
+          (nvim-treesitter.withPlugins (
+            grammars: with grammars; [
+              bash
+              c_sharp
+              css
+              csv
+              diff
+              dockerfile
+              git_config
+              git_rebase
+              gitattributes
+              gitcommit
+              gitignore
+              html
+              http
+              javascript
+              json
+              lua
+              luadoc
+              markdown
+              markdown_inline
+              mermaid
+              nix
+              python
+              razor
+              regex
+              sql
+              ssh_config
+              typescript
+              xml
+              yaml
+            ]
+          ))
         ];
       };
 
@@ -108,7 +91,6 @@ in
         recursive = true;
       };
 
-      home.packages = with pkgs; [ neovide ];
     };
 
     hm-persist = lib.mkIf (homeManager && impermanence) {
