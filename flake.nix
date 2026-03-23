@@ -46,86 +46,84 @@
     catppuccin.url = "github:catppuccin/nix";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    nix-ld.url = "github:Mic92/nix-ld";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    devshell.url = "github:numtide/devshell";
   };
 
   outputs =
-    { ... }@inputs:
-    let
-      lib = inputs.nixpkgs.lib;
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
 
-      supportedSystems = [ "x86_64-linux" ];
+      systems = [
+        "x86_64-linux"
+      ];
 
-      forAllSystems =
-        apply: lib.genAttrs supportedSystems (system: apply inputs.nixpkgs.legacyPackages.${system});
+      imports = [
+        inputs.devshell.flakeModule
+        ./packages
+        ./devshells
+      ];
 
-      recursiveImport = import ./recursiveImport.nix { inherit lib; };
-
-      specialArgs = {
-        inherit inputs;
-        baseVars = {
-          username = "kevin";
-          homeDirectory = "/home/kevin";
-        };
-      };
-    in
-    {
-      devShells = forAllSystems (
-        pkgs:
+      flake =
         let
-          files = recursiveImport [ ./devShells ];
+          lib = inputs.nixpkgs.lib;
 
-          makeAttr =
-            p:
-            let
-              fname = builtins.baseNameOf p;
-              len = builtins.stringLength fname;
-              hasNix = len > 4 && builtins.substring (len - 4) 4 fname == ".nix";
-              name = if hasNix then builtins.substring 0 (len - 4) fname else fname;
-            in
-            {
-              name = name;
-              value = import p { inherit pkgs; };
+          recursiveImport = import ./recursiveImport.nix { inherit lib; };
+
+          specialArgs = {
+            inherit inputs;
+            baseVars = {
+              username = "kevin";
+              homeDirectory = "/home/kevin";
             };
+          };
         in
-        builtins.listToAttrs (map makeAttr files)
-      );
-      nixosConfigurations = {
-        ray = lib.nixosSystem {
-          specialArgs = specialArgs // {
-            hostVars = {
-              hostname = "ray";
-              stateVersion = "25.05";
+        {
+          nixosConfigurations = {
+            ray = lib.nixosSystem {
+              specialArgs = specialArgs // {
+                hostVars = {
+                  hostname = "ray";
+                  stateVersion = "25.05";
+                };
+              };
+              modules = recursiveImport [
+                ./modules
+                ./hosts/ray
+              ];
+            };
+            rex = lib.nixosSystem {
+              specialArgs = specialArgs // {
+                hostVars = {
+                  hostname = "rex";
+                  stateVersion = "25.05";
+                };
+              };
+              modules = recursiveImport [
+                ./modules
+                ./hosts/rex
+              ];
+            };
+            raven = lib.nixosSystem {
+              specialArgs = specialArgs // {
+                hostVars = {
+                  hostname = "raven";
+                  stateVersion = "25.05";
+                };
+              };
+              modules = recursiveImport [
+                ./modules
+                ./hosts/raven
+              ];
             };
           };
-          modules = recursiveImport [
-            ./modules
-            ./hosts/ray
-          ];
         };
-        rex = lib.nixosSystem {
-          specialArgs = specialArgs // {
-            hostVars = {
-              hostname = "rex";
-              stateVersion = "25.05";
-            };
-          };
-          modules = recursiveImport [
-            ./modules
-            ./hosts/rex
-          ];
-        };
-        raven = lib.nixosSystem {
-          specialArgs = specialArgs // {
-            hostVars = {
-              hostname = "raven";
-              stateVersion = "25.05";
-            };
-          };
-          modules = recursiveImport [
-            ./modules
-            ./hosts/raven
-          ];
-        };
-      };
     };
 }

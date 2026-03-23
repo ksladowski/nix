@@ -13,8 +13,8 @@ in
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      (import ../../overlays/roslyn-ls.nix)
       inputs.neovim-nightly-overlay.overlays.default
+      inputs.nix-vscode-extensions.overlays.default
     ];
   };
   nix = {

@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs,
   self,
   ...
 }:
@@ -23,67 +22,26 @@ in
         withPython3 = true;
         vimdiffAlias = true;
         extraPackages = with pkgs; [
-          mermaid-cli # mermaid preview
-          tree-sitter # needed for nvim-treesitter rewrite
-          inotify-tools # better file watching
+          mermaid-cli
+          tree-sitter
+          inotify-tools
           luarocks
           lua5_1
           lua51Packages.jsregexp # for luasnip
+          gcc
 
-          #-- lua
           lua-language-server
           stylua
 
-          #-- nix
           nixfmt
           nixd
 
-          #-- markdown
-          marksman # LSP
+          marksman
 
-          #-- YAML
-          yaml-language-server
+          roslyn-ls
+          dotnet-sdk_10
+        ];
 
-          #-- SQL & co
-          sqlite
-          sqlcmd
-          sqlfluff
-        ];
-        plugins = with pkgs.vimPlugins; [
-          (nvim-treesitter.withPlugins (
-            grammars: with grammars; [
-              bash
-              c_sharp
-              css
-              csv
-              diff
-              dockerfile
-              git_config
-              git_rebase
-              gitattributes
-              gitcommit
-              gitignore
-              html
-              http
-              javascript
-              json
-              lua
-              luadoc
-              markdown
-              markdown_inline
-              mermaid
-              nix
-              python
-              razor
-              regex
-              sql
-              ssh_config
-              typescript
-              xml
-              yaml
-            ]
-          ))
-        ];
       };
 
       xdg.configFile.nvim = {
