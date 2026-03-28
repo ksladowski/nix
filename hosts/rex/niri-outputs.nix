@@ -10,28 +10,16 @@ in
 {
   config = lib.mkIf (desktopEnv && homeManager) {
     hm.programs.niri.settings.outputs = {
-      "ASUSTek COMPUTER INC VG27AQ1A S6LMQS059549" = {
+      "Samsung Electric Company Odyssey G93SD HCSL201348" = {
         enable = true;
         mode = {
-          width = 2560;
+          width = 5120;
           height = 1440;
-          refresh = 144.006;
-        };
-        position = {
-          x = 1920;
-          y = 0;
-        };
-      };
-      "PNP(AOC) 24G2WG3- PIBMCJA000715" = {
-        enable = true;
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 144.001;
+          refresh = 240.000;
         };
         position = {
           x = 0;
-          y = 380;
+          y = 0;
         };
       };
       "PNP(XMD) Mi TV Unknown" = {

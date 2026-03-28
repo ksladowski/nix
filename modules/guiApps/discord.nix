@@ -28,20 +28,25 @@ in
           settings.arRPC = false;
           state.firstLaunch = false;
         };
-        config.plugins = {
-          anonymiseFileNames.enable = true;
-          ircColors.enable = true;
-          replaceGoogleSearch = {
-            enable = true;
-            customEngineName = "Kagi";
-            customEngineURL = "https://kagi.com/search?q=";
-            replacementEngine = "custom";
+        config = {
+          themeLinks = [
+            "https://github.com/talwat/everforest-BD/blob/main/src.css"
+          ];
+          plugins = {
+            anonymiseFileNames.enable = true;
+            ircColors.enable = true;
+            replaceGoogleSearch = {
+              enable = true;
+              customEngineName = "Kagi";
+              customEngineURL = "https://kagi.com/search?q=";
+              replacementEngine = "custom";
+            };
+            noTypingAnimation.enable = true;
+            webKeybinds.enable = true;
+            youtubeAdblock.enable = true;
+            webScreenShareFixes.enable = true;
+            volumeBooster.enable = true;
           };
-          noTypingAnimation.enable = true;
-          webKeybinds.enable = true;
-          youtubeAdblock.enable = true;
-          webScreenShareFixes.enable = true;
-          volumeBooster.enable = true;
         };
       };
     };

@@ -84,7 +84,6 @@ in
             force = true;
             packages = with inputs.firefox-addons.packages.${pkgs.system}; [
               ublock-origin
-              firefox-color
               bitwarden
               vimium-c
             ];

@@ -10,12 +10,17 @@
       csharpier
       netcoredbg
 
-      config.packages.csharp-tools
+      vscode-extensions.ms-dotnettools.csharp
+      vscode-langservers-extracted
     ];
 
     env = [
       {
         name = "DOTNET_ROOT";
+        value = "${pkgs.dotnet-sdk_10}/share/dotnet/";
+      }
+      {
+        name = "DOTNET_ROOT_X64";
         value = "${pkgs.dotnet-sdk_10}/share/dotnet/";
       }
       {
@@ -33,6 +38,10 @@
       {
         name = "SSL_CERT_FILE";
         value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+      }
+      {
+        name = "ROSLYN_LSP_PATH";
+        value = "${pkgs.vscode-extensions.ms-dotnettools.csharp}/share/vscode/extensions/ms-dotnettools.csharp";
       }
     ];
 

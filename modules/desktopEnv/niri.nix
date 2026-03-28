@@ -49,20 +49,22 @@ in
           cursor.hide-when-typing = true;
 
           layout = {
+            gaps = 8;
             border.enable = false;
             # TODO these are hardcoded and probably shouldn't be. Use nix-colors (or stylix if it has the option) and import the palette
             focus-ring = {
               enable = true;
+              width = 1;
               active = {
-                color = "#cba6f7";
-              };
-              inactive = {
-                color = "#7f849c";
+                color = "#A7C080";
               };
             };
             shadow = {
               enable = true;
               color = "#0007";
+            };
+            tab-indicator = {
+              position = "right";
             };
             default-column-width.proportion = 0.5;
           };
@@ -135,9 +137,7 @@ in
               "toggleDND"
             ];
 
-            "Mod+Alt+P".action.power-off-monitors = { };
-
-            "Mod+Shift+Escape".action.spawn = [
+            "Mod+Ctrl+P".action.spawn = [
               "noctalia-shell"
               "ipc"
               "call"
@@ -169,9 +169,6 @@ in
             "Mod+E".action.focus-column-last = { };
             "Mod+Shift+A".action.move-column-to-first = { };
             "Mod+Shift+E".action.move-column-to-last = { };
-
-            "Mod+Grave".action.focus-monitor-next = { };
-            "Mod+Shift+Grave".action.move-window-to-monitor-next = { };
 
             "Mod+WheelScrollDown" = {
               cooldown-ms = 150;
@@ -211,9 +208,8 @@ in
 
             "Mod+M".action.maximize-column = { };
             "Mod+Shift+M".action.fullscreen-window = { };
-            "Mod+Ctrl+M".action.expand-column-to-available-width = { };
 
-            "Mod+Ctrl+C".action.center-visible-columns = { };
+            "Mod+C".action.center-column = { };
 
             "Mod+Minus".action.set-column-width = "-10%";
             "Mod+Equal".action.set-column-width = "+10%";

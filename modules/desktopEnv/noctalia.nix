@@ -21,43 +21,16 @@ in
         settings = {
           bar = {
             density = "compact";
-            position = "top";
+            position = "left";
             showCapsule = false;
             widgets = {
               left = [
                 {
-                  id = "Workspace";
-                  hideUnoccupied = false;
-                  labelMode = "none";
-                }
-                {
-                  id = "ActiveWindow";
-                  maxWidth = 300;
-                }
-                {
-                  id = "MediaMini";
-                  maxWidth = 300;
-                }
-              ];
-              center = [
-                {
-                  id = "NotificationHistory";
-                  hideWhenZero = true;
-                }
-                {
-                  id = "Clock";
-                  formatHorizontal = "HH:mm ddd, MMM dd";
-                  usePrimaryColor = true;
-                }
-              ];
-              right = [
-                {
-                  id = "SystemMonitor";
-                  showGpuTemp = true;
-                }
-                {
-                  id = "Tray";
-                  drawerEnabled = false;
+                  id = "ControlCenter";
+                  useDistroLogo = true;
+                  enableColorization = true;
+                  colorizeDistroLogo = true;
+                  colorizeSystemIcon = "primary";
                 }
                 {
                   id = "WiFi";
@@ -77,11 +50,40 @@ in
                   warningThreshold = 30;
                 })
                 {
-                  id = "ControlCenter";
-                  useDistroLogo = true;
+                  id = "Tray";
+                  drawerEnabled = false;
+                }
+                {
+                  id = "NotificationHistory";
+                  hideWhenZero = true;
+                }
+              ];
+              center = [
+                {
+                  id = "Clock";
+                  formatHorizontal = "HH:mm ddd, MMM dd";
+                  formatVertical = "HH mm - ddd dd MMM";
+                  usePrimaryColor = true;
+                }
+              ];
+              right = [
+                {
+                  id = "AudioVisualizer";
+                }
+                {
+                  id = "SystemMonitor";
+                  showGpuTemp = true;
+                }
+                {
+                  id = "Workspace";
+                  hideUnoccupied = false;
+                  labelMode = "none";
                 }
               ];
             };
+          };
+          osd = {
+            location = "top_left";
           };
           appLauncher = {
             terminalCommand = "ghostty -e";
@@ -134,13 +136,19 @@ in
               right = [ ];
             };
           };
+          SystemMonitor = {
+            enableDgpuMonitoring = false;
+          };
           wallpaper = {
             enabled = true;
             directory = "~/Pictures/Wallpapers";
             overviewEnabled = true;
           };
           colorSchemes = {
-            predefinedScheme = "Catppuccin";
+            predefinedScheme = "Everforest";
+          };
+          location = {
+            useFahrenheit = true;
           };
           dock.enabled = false;
         };
@@ -150,6 +158,7 @@ in
     hm-persist = lib.mkIf (homeManager && impermanence) {
       directories = [
         ".cache/noctalia" # needed to persist wallpaper, last changelog seen, etc
+        ".config/noctalia/colorschemes"
       ];
 
     };

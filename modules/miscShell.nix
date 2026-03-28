@@ -20,8 +20,6 @@
 
       programs.bat.enable = true;
 
-      programs.zoxide.enable = true;
-
       programs.htop.enable = true;
 
       programs.fzf.enable = true;

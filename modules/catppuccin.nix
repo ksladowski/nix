@@ -11,23 +11,9 @@ in
 {
   config = lib.mkIf desktopEnv {
     hm = lib.mkIf homeManager {
-      imports = [ inputs.catppuccin.homeModules.catppuccin ];
-      catppuccin = {
-        # enable = true;
-        cursors.enable = true;
-        ghostty.enable = true;
-        firefox = {
-          enable = true;
-          profiles.default = {
-            enable = true;
-            force = true;
-          };
-        };
-        fish.enable = true;
-        fzf.enable = true;
-        vesktop.enable = true;
-        yazi.enable = true;
-      };
+      imports = [ inputs.everforest.homeModules.everforest ];
+      gtk.enable = true;
+      everforest.enable = true;
     };
   };
 }

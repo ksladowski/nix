@@ -29,9 +29,10 @@
           config
           ;
       };
-      packages = rec {
-        ms-dotnettools = pkgs.callPackage ./ms-dotnettools.csharp { };
-        csharp-tools = pkgs.callPackage ./csharp-tools { inherit ms-dotnettools; };
+      packages = {
+        roslyn-with-razor = pkgs.callPackage ./roslyn-with-razor {
+          ms-dotnettools = pkgs.vscode-extensions.ms-dotnettools.csharp;
+        };
       };
     };
 }

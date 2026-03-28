@@ -21,6 +21,7 @@
 
     steam.enable = true;
     sunshine.enable = true;
+    xivlauncher.enable = true;
 
     hypervisor.enable = true;
     podman.enable = true;
@@ -29,6 +30,7 @@
     element.enable = true;
     discord.enable = true;
     firefox.enable = true;
+    chromium.enable = true;
     bitwarden.enable = true;
     remmina.enable = true;
 

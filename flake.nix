@@ -43,7 +43,7 @@
 
     pelican.url = "github:Hythera/nix-pelican";
 
-    catppuccin.url = "github:catppuccin/nix";
+    everforest.url = "git+https://codeberg.org/fwinter/everforest-nix.git";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 

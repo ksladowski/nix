@@ -6,7 +6,7 @@
   vscode,
 }:
 stdenvNoCC.mkDerivation {
-  pname = "csharp-tools";
+  pname = "roslyn-with-razor";
   version = "0.1";
 
   src = ./.;
@@ -32,7 +32,7 @@ stdenvNoCC.mkDerivation {
       mkdir -p $out/lib
       mkdir -p $out/share
 
-      ln -s ${root}/.roslyn/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn-ls
+      ln -s ${root}/.roslyn/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn-with-razor
 
       ln -s ${root}/.debugger/vsdbg-ui $out/bin/vsdbg-ui
       cp $src/vsdbgsignature.js $out/share
